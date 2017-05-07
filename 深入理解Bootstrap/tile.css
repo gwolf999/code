@@ -1,0 +1,1109 @@
+﻿.tile {
+    font-family: 'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tile {
+    position: relative; /* 相对布局*/
+    overflow: hidden; /* 内部元素溢出时，将其隐藏*/
+    display: block; /* 块级显示*/
+    float: left; /* 左浮动*/
+    width: 120px; /* 标准的tile大小是120 * 120*/
+    height: 120px;
+    margin: 0 10px 10px 0; /* 设置左右外边距，稍后会讲解原因*/
+    padding: 0; /* 不设置内边距*/
+    cursor: pointer; /* 默认鼠标移动上去时手型 */
+    background-color: #eeeeee; /* 默认背景颜色是灰色 */
+    box-shadow: inset 0px 0px 1px #FFFFCC; /* 设置少许的阴影 */
+}
+
+    .tile:hover {
+        outline: #999999 solid 3px; /* 鼠标移动时，设置轮廓颜色和边框 */
+    }
+
+    .tile.active .tile:active {
+        outline: 0;
+    }
+
+    .tile.no-outline { /* 提供一个no-outline样式用于专门禁用轮廓*/
+        outline-color: transparent; /* 不使用轮廓时，设置透明色 */
+    }
+
+    /* 50%大小 */
+    .tile.half {
+        width: 55px;
+        height: 55px;
+    }
+
+    /* 2倍大小 */
+    .tile.double {
+        width: 250px;
+    }
+
+    /* 3倍大小 */
+    .tile.triple {
+        width: 380px;
+    }
+
+    /* 4倍大小 */
+    .tile.quadro {
+        width: 510px;
+    }
+
+    /* 垂直2倍大小 */
+    .tile.double-vertical {
+        height: 250px;
+    }
+
+    /* 垂直3倍大小 */
+    .tile.triple-vertical {
+        height: 380px;
+    }
+
+    /* 垂直4倍大小 */
+    .tile.quadro-vertical {
+        height: 510px;
+    }
+
+
+.bg-black {
+    background-color: #000000 !important;
+}
+
+/* 此处省略其它几十个同类样式 */
+
+.bg-green {
+    background-color: #60a917 !important;
+}
+
+.fg-black {
+    color: #000000 !important;
+}
+
+/* 此处省略其它几十个同类样式 */
+
+.fg-green {
+    color: #60a917 !important;
+}
+
+
+.ol-black {
+    outline-color: #000000 !important;
+}
+
+/* 此处省略其它几十个同类样式 */
+
+.ol-green {
+    outline-color: #60a917 !important;
+}
+
+.bd-black {
+    border-color: #000000 !important;
+}
+
+/* 此处省略其它几十个同类样式 */
+
+.bd-green {
+    border-color: #60a917 !important;
+}
+
+.tile.selected {
+    border: 4px #4390df solid;
+}
+
+    .tile.selected:after {
+        position: absolute; /* 绝对定位 */
+        display: block; /* 块级显示 */
+        border-top: 28px solid #4390df; /* 三角形定义 */
+        border-left: 28px solid transparent;
+        right: 0; /* 三角形靠右 */
+        top: 0;
+        content: "";
+        z-index: 101;
+    }
+
+    .tile.selected:before {
+        position: absolute; /* 绝对定位 */
+        display: block; /* 块级显示 */
+        content: "\e013"; /* 小图标内容 */
+        color: #fff; /* 颜色为白色 */
+        right: 0; /* 右上角显示 */
+        top: 0;
+        font-family: Glyphicons Halflings; /* 设置图标字体*/
+        font-size: 10pt;
+        font-weight: normal;
+        z-index: 102;
+    }
+
+.tile .tile-content {
+    width: 100%; /* 充满父元素*/
+    height: 100%;
+    padding: 0; /* 内外边距都取消*/
+    margin: 0;
+    display: block; /* 块级显示*/
+    position: absolute; /* 绝对定位*/
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+    .tile .tile-content.padded {
+        padding: 10px; /* 10像素足够了*/
+    }
+
+    .tile .tile-content.image { /* 示例：<div class="tile-content image"><img src=""/></div>*/
+        width: 100%; /* 图标100%充满 容器 */
+        min-height: 100%;
+        max-height: 100%;
+    }
+
+    .tile .tile-content.icon [class*="icon-"], /* tile-content上应用icon、并且子元素应用以icon-开头的样式时 */
+    .tile .tile-content.icon [class*="glyphicon-"], /* tile-content上应用icon、并且子元素应用以glyphicon-开头的样式时 */
+    .tile .tile-content.icon img { /* tile-content上应用icon、并且子元素是imag元素时 */
+        line-height: 56px;
+        height: 56px; /* 强制设置图标大小是56*56 */
+        width: 56px;
+        font-size: 48px;
+        color: #ffffff; /* 白色字体或图标 */
+        text-align: center;
+        position: absolute; /* 绝对定位 */
+        left: 50%;
+        top: 50%;
+        margin-top: -28px;
+        margin-left: -28px;
+    }
+
+.tile .brand {
+    position: absolute; /* 绝对定位 */
+    bottom: 0; /* 靠近磁贴底部 */
+    left: 0; /* 靠近磁贴左边 */
+    right: 0; /* 靠近磁贴右边 */
+    min-height: 29px; /* 最小高度29px */
+    margin: 0; /* 不设置margin */
+}
+
+    .tile .brand.opacity {
+        opacity: .7;
+    }
+
+    .tile .brand:before,
+    .tile .brand:after {
+        display: table;
+        content: "";
+    }
+
+    .tile .brand:after {
+        clear: both;
+    }
+
+    .tile .brand .label,
+    .tile .brand .text {
+        float: left;
+        display: block;
+        font-size: 10pt;
+        margin: 5px 20px 2px 5px;
+        background: transparent;
+        color: #ffffff;
+    }
+
+    .tile .brand .text {
+        margin: 4px 5px;
+        font-size: 8pt;
+        line-height: 10pt;
+    }
+
+    .tile .brand .badge {
+        position: absolute; /*绝对定位*/
+        bottom: 0; /*靠近底部*/
+        right: 10px; /*离最右边保持10像素距离*/
+        width: 29px;
+        height: 29px; /*确保和brand横条高度一致*/
+        text-align: center;
+        color: #ffffff; /*默认文本为白色*/
+        padding: 5px;
+        margin: 0;
+        vertical-align: middle !important;
+        display: block;
+        font-size: 10pt;
+        border-radius: 0px; /* 特别重要，要覆盖Bootstrap默认badge样式的圆角设置*/
+    }
+
+.tile-group {
+    float: left;
+    display: block;
+    padding: 40px 0px 0px 10px; /* 40像素时给title标题留的位置，10像素时左边的间隙*/
+    position: relative;
+    color: #ffffff;
+}
+
+    .tile-group .tile-group-title {
+        font-size: 18px;
+        line-height: 20px;
+        position: absolute; /* 绝对定位*/
+        top: 10px;
+        color: inherit;
+    }
+
+    .tile-group.two,
+    .tile-group.double {
+        width: 270px; /* 250+10 */
+    }
+
+    .tile-group.three,
+    .tile-group.triple {
+        width: 400px; /* 380+10 */
+    }
+
+    .tile-group.four,
+    .tile-group.quadro {
+        width: 530px; /* 510+10 */
+    }
+
+    .tile-group.five {
+        width: 660px;
+    }
+
+    .tile-group.six {
+        width: 790px;
+    }
+
+    .tile-group.seven {
+        width: 920px;
+    }
+
+.tile .tile-content {
+    display: none;
+}
+
+.tile .tile-content:first-child {
+    display: block;
+}
+
+
+
+.bg-black {
+    background-color: #000000 !important;
+}
+
+.bg-white {
+    background-color: #ffffff !important;
+}
+
+.bg-lime {
+    background-color: #a4c400 !important;
+}
+
+.bg-green {
+    background-color: #60a917 !important;
+}
+
+.bg-emerald {
+    background-color: #008a00 !important;
+}
+
+.bg-teal {
+    background-color: #00aba9 !important;
+}
+
+.bg-cyan {
+    background-color: #1ba1e2 !important;
+}
+
+.bg-cobalt {
+    background-color: #0050ef !important;
+}
+
+.bg-indigo {
+    background-color: #6a00ff !important;
+}
+
+.bg-violet {
+    background-color: #aa00ff !important;
+}
+
+.bg-pink {
+    background-color: #dc4fad !important;
+}
+
+.bg-magenta {
+    background-color: #d80073 !important;
+}
+
+.bg-crimson {
+    background-color: #a20025 !important;
+}
+
+.bg-red {
+    background-color: #e51400 !important;
+}
+
+.bg-orange {
+    background-color: #fa6800 !important;
+}
+
+.bg-amber {
+    background-color: #f0a30a !important;
+}
+
+.bg-yellow {
+    background-color: #e3c800 !important;
+}
+
+.bg-brown {
+    background-color: #825a2c !important;
+}
+
+.bg-olive {
+    background-color: #6d8764 !important;
+}
+
+.bg-steel {
+    background-color: #647687 !important;
+}
+
+.bg-mauve {
+    background-color: #76608a !important;
+}
+
+.bg-taupe {
+    background-color: #87794e !important;
+}
+
+.bg-gray {
+    background-color: #555555 !important;
+}
+
+.bg-dark {
+    background-color: #333333 !important;
+}
+
+.bg-darker {
+    background-color: #222222 !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+.bg-darkBrown {
+    background-color: #63362f !important;
+}
+
+.bg-darkCrimson {
+    background-color: #640024 !important;
+}
+
+.bg-darkMagenta {
+    background-color: #81003c !important;
+}
+
+.bg-darkIndigo {
+    background-color: #4b0096 !important;
+}
+
+.bg-darkCyan {
+    background-color: #1b6eae !important;
+}
+
+.bg-darkCobalt {
+    background-color: #00356a !important;
+}
+
+.bg-darkTeal {
+    background-color: #004050 !important;
+}
+
+.bg-darkEmerald {
+    background-color: #003e00 !important;
+}
+
+.bg-darkGreen {
+    background-color: #128023 !important;
+}
+
+.bg-darkOrange {
+    background-color: #bf5a15 !important;
+}
+
+.bg-darkRed {
+    background-color: #9a1616 !important;
+}
+
+.bg-darkPink {
+    background-color: #9a165a !important;
+}
+
+.bg-darkViolet {
+    background-color: #57169a !important;
+}
+
+.bg-darkBlue {
+    background-color: #16499a !important;
+}
+
+.bg-lightBlue {
+    background-color: #4390df !important;
+}
+
+.bg-lightRed {
+    background-color: #ff2d19 !important;
+}
+
+.bg-lightGreen {
+    background-color: #7ad61d !important;
+}
+
+.bg-lighterBlue {
+    background-color: #00ccff !important;
+}
+
+.bg-lightTeal {
+    background-color: #45fffd !important;
+}
+
+.bg-lightOlive {
+    background-color: #78aa1c !important;
+}
+
+.bg-lightOrange {
+    background-color: #c29008 !important;
+}
+
+.bg-lightPink {
+    background-color: #f472d0 !important;
+}
+
+.bg-grayDark {
+    background-color: #333333 !important;
+}
+
+.bg-grayDarker {
+    background-color: #222222 !important;
+}
+
+.bg-grayLight {
+    background-color: #999999 !important;
+}
+
+.bg-grayLighter {
+    background-color: #eeeeee !important;
+}
+
+.fg-black {
+    color: #000000 !important;
+}
+
+.fg-white {
+    color: #ffffff !important;
+}
+
+.fg-lime {
+    color: #a4c400 !important;
+}
+
+.fg-green {
+    color: #60a917 !important;
+}
+
+.fg-emerald {
+    color: #008a00 !important;
+}
+
+.fg-teal {
+    color: #00aba9 !important;
+}
+
+.fg-cyan {
+    color: #1ba1e2 !important;
+}
+
+.fg-cobalt {
+    color: #0050ef !important;
+}
+
+.fg-indigo {
+    color: #6a00ff !important;
+}
+
+.fg-violet {
+    color: #aa00ff !important;
+}
+
+.fg-pink {
+    color: #dc4fad !important;
+}
+
+.fg-magenta {
+    color: #d80073 !important;
+}
+
+.fg-crimson {
+    color: #a20025 !important;
+}
+
+.fg-red {
+    color: #e51400 !important;
+}
+
+.fg-orange {
+    color: #fa6800 !important;
+}
+
+.fg-amber {
+    color: #f0a30a !important;
+}
+
+.fg-yellow {
+    color: #e3c800 !important;
+}
+
+.fg-brown {
+    color: #825a2c !important;
+}
+
+.fg-olive {
+    color: #6d8764 !important;
+}
+
+.fg-steel {
+    color: #647687 !important;
+}
+
+.fg-mauve {
+    color: #76608a !important;
+}
+
+.fg-taupe {
+    color: #87794e !important;
+}
+
+.fg-gray {
+    color: #555555 !important;
+}
+
+.fg-dark {
+    color: #333333 !important;
+}
+
+.fg-darker {
+    color: #222222 !important;
+}
+
+.fg-transparent {
+    color: transparent !important;
+}
+
+.fg-darkBrown {
+    color: #63362f !important;
+}
+
+.fg-darkCrimson {
+    color: #640024 !important;
+}
+
+.fg-darkMagenta {
+    color: #81003c !important;
+}
+
+.fg-darkIndigo {
+    color: #4b0096 !important;
+}
+
+.fg-darkCyan {
+    color: #1b6eae !important;
+}
+
+.fg-darkCobalt {
+    color: #00356a !important;
+}
+
+.fg-darkTeal {
+    color: #004050 !important;
+}
+
+.fg-darkEmerald {
+    color: #003e00 !important;
+}
+
+.fg-darkGreen {
+    color: #128023 !important;
+}
+
+.fg-darkOrange {
+    color: #bf5a15 !important;
+}
+
+.fg-darkRed {
+    color: #9a1616 !important;
+}
+
+.fg-darkPink {
+    color: #9a165a !important;
+}
+
+.fg-darkViolet {
+    color: #57169a !important;
+}
+
+.fg-darkBlue {
+    color: #16499a !important;
+}
+
+.fg-lightBlue {
+    color: #4390df !important;
+}
+
+.fg-lighterBlue {
+    color: #00ccff !important;
+}
+
+.fg-lightTeal {
+    color: #45fffd !important;
+}
+
+.fg-lightOlive {
+    color: #78aa1c !important;
+}
+
+.fg-lightOrange {
+    color: #c29008 !important;
+}
+
+.fg-lightPink {
+    color: #f472d0 !important;
+}
+
+.fg-lightRed {
+    color: #ff2d19 !important;
+}
+
+.fg-lightGreen {
+    color: #7ad61d !important;
+}
+
+.fg-grayDark {
+    color: #333333 !important;
+}
+
+.fg-grayDarker {
+    color: #222222 !important;
+}
+
+.fg-grayLight {
+    color: #999999 !important;
+}
+
+.fg-grayLighter {
+    color: #eeeeee !important;
+}
+
+.ol-black {
+    outline-color: #000000 !important;
+}
+
+.ol-white {
+    outline-color: #ffffff !important;
+}
+
+.ol-lime {
+    outline-color: #a4c400 !important;
+}
+
+.ol-green {
+    outline-color: #60a917 !important;
+}
+
+.ol-emerald {
+    outline-color: #008a00 !important;
+}
+
+.ol-teal {
+    outline-color: #00aba9 !important;
+}
+
+.ol-cyan {
+    outline-color: #1ba1e2 !important;
+}
+
+.ol-cobalt {
+    outline-color: #0050ef !important;
+}
+
+.ol-indigo {
+    outline-color: #6a00ff !important;
+}
+
+.ol-violet {
+    outline-color: #aa00ff !important;
+}
+
+.ol-pink {
+    outline-color: #dc4fad !important;
+}
+
+.ol-magenta {
+    outline-color: #d80073 !important;
+}
+
+.ol-crimson {
+    outline-color: #a20025 !important;
+}
+
+.ol-red {
+    outline-color: #e51400 !important;
+}
+
+.ol-orange {
+    outline-color: #fa6800 !important;
+}
+
+.ol-amber {
+    outline-color: #f0a30a !important;
+}
+
+.ol-yellow {
+    outline-color: #e3c800 !important;
+}
+
+.ol-brown {
+    outline-color: #825a2c !important;
+}
+
+.ol-olive {
+    outline-color: #6d8764 !important;
+}
+
+.ol-steel {
+    outline-color: #647687 !important;
+}
+
+.ol-mauve {
+    outline-color: #76608a !important;
+}
+
+.ol-taupe {
+    outline-color: #87794e !important;
+}
+
+.ol-gray {
+    outline-color: #555555 !important;
+}
+
+.ol-dark {
+    outline-color: #333333 !important;
+}
+
+.ol-darker {
+    outline-color: #222222 !important;
+}
+
+.ol-transparent {
+    outline-color: transparent !important;
+}
+
+.ol-darkBrown {
+    outline-color: #63362f !important;
+}
+
+.ol-darkCrimson {
+    outline-color: #640024 !important;
+}
+
+.ol-darkMagenta {
+    outline-color: #81003c !important;
+}
+
+.ol-darkIndigo {
+    outline-color: #4b0096 !important;
+}
+
+.ol-darkCyan {
+    outline-color: #1b6eae !important;
+}
+
+.ol-darkCobalt {
+    outline-color: #00356a !important;
+}
+
+.ol-darkTeal {
+    outline-color: #004050 !important;
+}
+
+.ol-darkEmerald {
+    outline-color: #003e00 !important;
+}
+
+.ol-darkGreen {
+    outline-color: #128023 !important;
+}
+
+.ol-darkOrange {
+    outline-color: #bf5a15 !important;
+}
+
+.ol-darkRed {
+    outline-color: #9a1616 !important;
+}
+
+.ol-darkPink {
+    outline-color: #9a165a !important;
+}
+
+.ol-darkViolet {
+    outline-color: #57169a !important;
+}
+
+.ol-darkBlue {
+    outline-color: #16499a !important;
+}
+
+.ol-lightBlue {
+    outline-color: #4390df !important;
+}
+
+.ol-lighterBlue {
+    outline-color: #00ccff !important;
+}
+
+.ol-lightTeal {
+    outline-color: #45fffd !important;
+}
+
+.ol-lightOlive {
+    outline-color: #78aa1c !important;
+}
+
+.ol-lightOrange {
+    outline-color: #c29008 !important;
+}
+
+.ol-lightPink {
+    outline-color: #f472d0 !important;
+}
+
+.ol-lightRed {
+    outline-color: #ff2d19 !important;
+}
+
+.ol-lightGreen {
+    outline-color: #7ad61d !important;
+}
+
+.ol-grayDark {
+    outline-color: #333333 !important;
+}
+
+.ol-grayDarker {
+    outline-color: #222222 !important;
+}
+
+.ol-grayLight {
+    outline-color: #999999 !important;
+}
+
+.ol-grayLighter {
+    outline-color: #eeeeee !important;
+}
+
+.bd-black {
+    border-color: #000000 !important;
+}
+
+.bd-white {
+    border-color: #ffffff !important;
+}
+
+.bd-lime {
+    border-color: #a4c400 !important;
+}
+
+.bd-green {
+    border-color: #60a917 !important;
+}
+
+.bd-emerald {
+    border-color: #008a00 !important;
+}
+
+.bd-teal {
+    border-color: #00aba9 !important;
+}
+
+.bd-cyan {
+    border-color: #1ba1e2 !important;
+}
+
+.bd-cobalt {
+    border-color: #0050ef !important;
+}
+
+.bd-indigo {
+    border-color: #6a00ff !important;
+}
+
+.bd-violet {
+    border-color: #aa00ff !important;
+}
+
+.bd-pink {
+    border-color: #dc4fad !important;
+}
+
+.bd-magenta {
+    border-color: #d80073 !important;
+}
+
+.bd-crimson {
+    border-color: #a20025 !important;
+}
+
+.bd-red {
+    border-color: #e51400 !important;
+}
+
+.bd-orange {
+    border-color: #fa6800 !important;
+}
+
+.bd-amber {
+    border-color: #f0a30a !important;
+}
+
+.bd-yellow {
+    border-color: #e3c800 !important;
+}
+
+.bd-brown {
+    border-color: #825a2c !important;
+}
+
+.bd-olive {
+    border-color: #6d8764 !important;
+}
+
+.bd-steel {
+    border-color: #647687 !important;
+}
+
+.bd-mauve {
+    border-color: #76608a !important;
+}
+
+.bd-taupe {
+    border-color: #87794e !important;
+}
+
+.bd-gray {
+    border-color: #555555 !important;
+}
+
+.bd-dark {
+    border-color: #333333 !important;
+}
+
+.bd-darker {
+    border-color: #222222 !important;
+}
+
+.bd-transparent {
+    border-color: transparent !important;
+}
+
+.bd-darkBrown {
+    border-color: #63362f !important;
+}
+
+.bd-darkCrimson {
+    border-color: #640024 !important;
+}
+
+.bd-darkMagenta {
+    border-color: #81003c !important;
+}
+
+.bd-darkIndigo {
+    border-color: #4b0096 !important;
+}
+
+.bd-darkCyan {
+    border-color: #1b6eae !important;
+}
+
+.bd-darkCobalt {
+    border-color: #00356a !important;
+}
+
+.bd-darkTeal {
+    border-color: #004050 !important;
+}
+
+.bd-darkEmerald {
+    border-color: #003e00 !important;
+}
+
+.bd-darkGreen {
+    border-color: #128023 !important;
+}
+
+.bd-darkOrange {
+    border-color: #bf5a15 !important;
+}
+
+.bd-darkRed {
+    border-color: #9a1616 !important;
+}
+
+.bd-darkPink {
+    border-color: #9a165a !important;
+}
+
+.bd-darkViolet {
+    border-color: #57169a !important;
+}
+
+.bd-darkBlue {
+    border-color: #16499a !important;
+}
+
+.bd-lightBlue {
+    border-color: #4390df !important;
+}
+
+.bd-lightTeal {
+    border-color: #45fffd !important;
+}
+
+.bd-lightOlive {
+    border-color: #78aa1c !important;
+}
+
+.bd-lightOrange {
+    border-color: #c29008 !important;
+}
+
+.bd-lightPink {
+    border-color: #f472d0 !important;
+}
+
+.bd-lightRed {
+    border-color: #ff2d19 !important;
+}
+
+.bd-lightGreen {
+    border-color: #7ad61d !important;
+}
+
+.bd-grayDark {
+    border-color: #333333 !important;
+}
+
+.bd-grayDarker {
+    border-color: #222222 !important;
+}
+
+.bd-grayLight {
+    border-color: #999999 !important;
+}
+
+.bd-grayLighter {
+    border-color: #eeeeee !important;
+}

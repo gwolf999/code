@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>标题</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" />
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        .btn > .glyphicon {
+            margin-right: 3px;
+        }
+
+        .pagination.square {
+            margin: 0; /* 去除外边距 */
+        }
+
+            .pagination.square > li > a,
+            .pagination.square > li > span {
+                margin: 0 5px;
+                border: 1px solid #dddddd; /* 设置所有的边框都为1像素 */
+            }
+
+            .pagination.square > li:first-child > a,
+            .pagination.square > li:first-child > span,
+            .pagination.square > li:last-child > a,
+            .pagination.square > li:last-child > span {
+                margin-left: 0px;
+                padding-left: 10px;
+                padding-right: 10px;
+                border-radius: 0px; /* 取消圆角 */
+            }
+
+        .pagination.red > li > a,
+        .pagination.red > li > span {
+            color: #f00;
+            border: 1px solid #f00;
+        }
+
+            .pagination.red > li > a:hover,
+            .pagination.red > li > span:hover,
+            .pagination.red > li > a:focus,
+            .pagination.red > li > span:focus {
+                background-color: #fdd5d5;
+            }
+
+        .pagination.red > .active > a,
+        .pagination.red > .active > span,
+        .pagination.red > .active > a:hover,
+        .pagination.red > .active > span:hover,
+        .pagination.red > .active > a:focus,
+        .pagination.red > .active > span:focus {
+            color: #ffffff;
+            background-color: #f00;
+            border-color: #f00;
+        }
+
+        .pagination.red > .disabled > span,
+        .pagination.red > .disabled > span:hover,
+        .pagination.red > .disabled > span:focus,
+        .pagination.red > .disabled > a,
+        .pagination.red > .disabled > a:hover,
+        .pagination.red > .disabled > a:focus {
+            color: #fdd5d5;
+            background-color: #ffffff;
+            border-color: #f00;
+        }
+
+        .pagination.green > li > a,
+        .pagination.green > li > span {
+            color: #5aa414;
+            border: 1px solid #5aa414;
+        }
+
+            .pagination.green > li > a:hover,
+            .pagination.green > li > span:hover,
+            .pagination.green > li > a:focus,
+            .pagination.green > li > span:focus {
+                background-color: #d8edc3;
+            }
+
+        .pagination.green > .active > a,
+        .pagination.green > .active > span,
+        .pagination.green > .active > a:hover,
+        .pagination.green > .active > span:hover,
+        .pagination.green > .active > a:focus,
+        .pagination.green > .active > span:focus {
+            color: #ffffff;
+            background-color: #5aa414;
+            border-color: #5aa414;
+        }
+
+        .pagination.green > .disabled > span,
+        .pagination.green > .disabled > span:hover,
+        .pagination.green > .disabled > span:focus,
+        .pagination.green > .disabled > a,
+        .pagination.green > .disabled > a:hover,
+        .pagination.green > .disabled > a:focus {
+            color: #d8edc3;
+            background-color: #ffffff;
+            border-color: #5aa414;
+        }
+
+        .table {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body style="padding: 10px" class="apollo">
+    <div class="modal fade" id="rolePopUp">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Roles of Tom Xu</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Role</th>
+                                <th>Assign Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Administrator</td>
+                                <td>2011-10-10</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Editor</td>
+                                <td>2011-11-11</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Sr. Dev</td>
+                                <td>2011-12-12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="newPopUp">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="H1">Create a new User</h4>
+                </div>
+                <div class="modal-body">
+
+
+
+
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="Email" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="Password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Birthday</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Text1" placeholder="Birthday">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                        Enable
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnCreate">Create</button>
+                    <button type="button" class="btn btn-warning" id="btnReset">Reset</button>
+                    <button type="button" class="btn btn-danger" id="btnCancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="DisabledPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="H2">删除提示</h4>
+                </div>
+                <div class="modal-body">
+                    提示内容
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnConfirm" data-dismiss="confirm">确认</button>
+                    <button type="button" class="btn btn-danger" id="btn2Cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+
+                <div class="panel panel-default ">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading clearfix">
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle active" data-toggle="dropdown">
+                                    Filter By Disabled <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Filter by Account Status</a></li>
+                                    <li><a href="#">Filter by Department</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Reset</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Sort By FirstName <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="#">Sort by FirstName</a></li>
+                                    <li><a href="#">Sort by Email</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Reset</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pull-left">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#newPopUp" data-backdrop="static">New</button>
+                            <button class="btn btn-warning" data-toggle="infomodal" data-target="#DisabledPopup" data-backdrop="static">Disable</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+
+
+                    <table id="List" class="table table-bordered table-hover cc">
+                        <thead>
+                            <tr class="">
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">ID</td>
+                                <td>Name</td>
+                                <td>Birthday</td>
+                                <td>Email</td>
+                                <td>Phone Number</td>
+                                <td class="col-lg-3">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">1</td>
+                                <td>Tom Xu</td>
+                                <td>1982-11-11</td>
+                                <td>tomxu@outlook.com</td>
+                                <td>135816xx8888</td>
+                                <td>
+                                    <button class="btn  btn-xs btn-info" data-toggle="modal" data-target="#rolePopUp"><span class="glyphicon glyphicon-list"></span>Info</button>
+                                    <button class="btn  btn-xs btn-success"><span class="glyphicon glyphicon-user"></span>Role</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">2</td>
+                                <td>Nicholas Gottlieb</td>
+                                <td>1982-11-11</td>
+                                <td>nicholas.gottlieb@outlook.com</td>
+                                <td>135816xx8888</td>
+                                <td>
+                                    <button class="btn  btn-xs btn-info"><span class="glyphicon glyphicon-list"></span>Info</button>
+                                    <button class="btn  btn-xs btn-success"><span class="glyphicon glyphicon-user"></span>Role</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">3</td>
+                                <td>Simon Howell</td>
+                                <td>1982-11-11</td>
+                                <td>smon.howell@outlook.com</td>
+                                <td>135816xx8888</td>
+                                <td>
+                                    <button class="btn  btn-xs btn-info"><span class="glyphicon glyphicon-list"></span>Info</button>
+                                    <button class="btn  btn-xs btn-success"><span class="glyphicon glyphicon-user"></span>Role</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">4</td>
+                                <td>Ray Sperry</td>
+                                <td>1982-11-11</td>
+                                <td>ray.sperry@outlook.com</td>
+                                <td>135816xx8888</td>
+                                <td>
+                                    <button class="btn  btn-xs btn-info"><span class="glyphicon glyphicon-list"></span>Info</button>
+                                    <button class="btn  btn-xs btn-success"><span class="glyphicon glyphicon-user"></span>Role</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">5</td>
+                                <td>John Mccarrin</td>
+                                <td>1982-11-11</td>
+                                <td>john.mccarrin@outlook.com</td>
+                                <td>135816xx8888</td>
+                                <td>
+                                    <button class="btn  btn-xs btn-info"><span class="glyphicon glyphicon-list"></span>Info</button>
+                                    <button class="btn  btn-xs btn-success"><span class="glyphicon glyphicon-user"></span>Role</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">6</td>
+                                <td>John Mccarrin</td>
+                                <td>1982-11-11</td>
+                                <td>john.mccarrin@outlook.com</td>
+                                <td>135816xx8888</td>
+                                <td>
+                                    <button class="btn  btn-xs btn-info"><span class="glyphicon glyphicon-list"></span>Info</button>
+                                    <button class="btn  btn-xs btn-success"><span class="glyphicon glyphicon-user"></span>Role</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" /></td>
+                                <td class="text-center">7</td>
+                                <td>John Mccarrin</td>
+                                <td>1982-11-11</td>
+                                <td>john.mccarrin@outlook.com</td>
+                                <td>135816xx8888</td>
+                                <td>
+                                    <button class="btn  btn-xs btn-info"><span class="glyphicon glyphicon-list"></span>Info</button>
+                                    <button class="btn  btn-xs btn-success"><span class="glyphicon glyphicon-user"></span>Role</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul class="list-group">
+                        <!-- <li class="list-group-item">
+                            <div class="alert alert-warning">No user record!</div>
+                        </li>-->
+                        <li class="list-group-item">
+                            <ul class="pagination square">
+                                <li class="disabled"><span>Prev</span></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li class="disabled"><span>...</span></li>
+                                <li><a href="#">14</a></li>
+                                <li><a href="#">15</a></li>
+                                <li><a href="#">16</a></li>
+                                <li><a href="#">17</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                            <ul class="pagination square red">
+                                <li class="disabled"><span>Prev</span></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li class="disabled"><span>...</span></li>
+                                <li><a href="#">14</a></li>
+                                <li><a href="#">15</a></li>
+                                <li><a href="#">16</a></li>
+                                <li><a href="#">17</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                            <ul class="pagination square green">
+                                <li class="disabled"><span>Prev</span></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li class="disabled"><span>...</span></li>
+                                <li><a href="#">14</a></li>
+                                <li><a href="#">15</a></li>
+                                <li><a href="#">16</a></li>
+                                <li><a href="#">17</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
