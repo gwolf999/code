@@ -1,0 +1,33 @@
+//
+// Page Contents
+// --------------------------
+
+main {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+.home main [class*="col-"] { // only in homepage
+	h1, h2, h3, h4 {
+		clear: both;
+		padding-top: 20px;
+		@media (min-width: @screen-sm-min) {
+			&:first-child {
+				margin-top: 0;
+				padding-top: 0;
+			}
+		}
+	}
+	.content-primary {
+		font-size: @font-size-large;
+	}
+	.content-tertiary {
+		font-size: @font-size-small;
+	}
+	// Make columns clear floats in narrow viewport single-column layout
+	@media (max-width: @screen-sm-min) {
+		[class*="col-"] {
+			clear: both;
+		}
+	}
+}

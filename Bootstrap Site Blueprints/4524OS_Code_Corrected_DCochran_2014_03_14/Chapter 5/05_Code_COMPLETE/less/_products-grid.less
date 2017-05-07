@@ -1,0 +1,135 @@
+//
+// Styles for the Products Grid
+//
+
+.pagination-wrap {
+	text-align: center;
+}
+
+.grid-options {
+	padding-top: 12px;
+	padding-bottom: 24px;
+	.panel;
+	.panel-default;
+	max-width: 480px; // responsive adjustment
+	.center-block();
+	> h2 {
+		margin-top: 0;
+		font-size: 1.5 * (@font-size-large);
+		line-height: 1.2;
+		color: @gray-dark;
+	}
+	> h3 {
+		font-size: @font-size-large;
+		line-height: 1.2;
+		margin-top: 12px;
+		color: @gray-dark;
+	}
+	.options-list {
+		.make-row();
+		list-style-type: none;
+		padding-left: 0;
+		// display: table;
+		li {
+			.make-xs-column(6);
+			@media screen and (max-width: @screen-xs-max) {
+				.make-xs-column(4);
+			}
+			// float: none;
+			// display: inline-table;
+			// vertical-align: top;
+			a {
+				.btn;
+				.btn-sm;
+				// font-size: @font-size-small;
+				padding-left: 0;
+				padding-right: 0;
+				color: @gray;
+				&:hover,
+				&:focus,
+				&:active,
+				.active & {
+					color: @link-color;
+				}
+				&:before {
+					// from font-awesome/core.less
+					display: inline-block;
+				  font-family: FontAwesome;
+				  font-style: normal;
+				  font-weight: normal;
+				  line-height: 1;
+				  -webkit-font-smoothing: antialiased;
+				  -moz-osx-font-smoothing: grayscale;
+				  // from font-awesome/icons.less
+				  content: @fa-var-square-o;
+				  // from font-awesome/fixed-width.less
+				  width: (18em / 14);
+  				text-align: center;
+				}
+				&:hover:before,
+				&:focus:before,
+				&:active:before,
+				.active &:before {
+					// from font-awesome/icons.less
+				 	content: @fa-var-check-square-o;
+				}
+			}
+		}
+	}
+}
+
+
+.choose-clearance {
+	.center-block();
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 12px;
+	white-space: normal;
+	position: relative;
+	h3 {
+		font-weight: normal;
+		color: #fff;
+		padding-top: 4px;
+		margin: 6px;
+	}
+	p {
+		margin: 6px 20px;
+		line-height: 1.2;
+	}
+	.icon {
+		position: absolute;
+		top: 0;
+		right: 2px;
+	}
+}
+
+.product-item {
+	height: 360px;
+	overflow: hidden;
+  padding-bottom: 32px;
+  img {
+		width: 100%;
+  }
+  h2 {
+		font-size: @font-size-large;
+		line-height: 1.2;
+		padding: 0 !important;
+		margin-top: 6px;
+		margin-bottom: 2px;
+  }
+  p {
+		font-size: @font-size-small;
+		line-height: 1.3;
+		color: @gray;
+  }
+}
+
+// Responsive adjustments
+@media (min-width: @screen-sm-min) {
+	.options-panel {
+		display: block;
+	}
+	.options-panel-toggle {
+		display: none;
+	}
+}

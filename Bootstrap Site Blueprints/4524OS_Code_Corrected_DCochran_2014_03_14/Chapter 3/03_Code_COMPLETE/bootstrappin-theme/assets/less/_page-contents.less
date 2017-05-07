@@ -1,0 +1,15 @@
+//
+// Page Contents
+// --------------------------
+
+.page-contents {
+	padding-top: 20px;
+	padding-bottom: 40px;
+
+	@media (max-width: @screen-xs-max) { // fits within col-sm-min in markup
+		[class^="col"] {
+			clear: both;
+			padding-bottom: 40px;
+		}
+	}
+}

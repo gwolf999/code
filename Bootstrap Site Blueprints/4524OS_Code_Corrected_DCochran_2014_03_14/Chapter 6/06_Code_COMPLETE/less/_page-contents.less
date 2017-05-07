@@ -1,0 +1,209 @@
+//
+// Page Contents
+// ---------------------------
+
+body { // adjust for navbar-fixed-top
+	padding-top: @navbar-height;
+}
+
+#features, #impact, #signup {
+	padding-top: 36px;
+	padding-bottom: 48px;
+	h1 {
+		font-size: 5em;
+		color: @gray;
+		line-height: 1.3;
+		padding-bottom: 24px;
+	}
+}
+
+// Adjust section headings for extra-small viewports only
+@media (max-width: @screen-xs-max) {
+	#features, #impact, #signup {
+		margin-left: 30px;
+		margin-right: 30px;
+		h1 {
+			font-size: 3em;
+		}
+	}
+}
+
+
+#welcome {
+	height: 300px;
+	background-color: #191919;
+	color: #fff;
+	position: relative;
+	.welcome-message {
+		background-color: hsla(0,0,1%,0.4); // translucent overlay
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 20px 40px;
+		strong {
+			font-size: 1.5em;
+			text-transform: uppercase;
+		}
+	}
+	.btn {
+		margin-top: 16px;
+	}
+	@media (max-width: @screen-sm-max) {
+		background: #191919 url('../img/subway-906x600.jpg') center center no-repeat;
+	}
+	@media (min-width: @screen-sm-min) {
+		height: 480px;
+		.container {
+			position: relative;
+		}
+		.welcome-message {
+			right: 20%;
+			bottom: auto;
+			strong {
+				display: block;
+			}
+		}
+	}
+	@media (min-width: @screen-md-min) {
+		height: 540px;
+		background: #191919 url('../img/subway-1600x1060.jpg') center center no-repeat;
+		-webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+	  .welcome-message {
+	  	right: 50%;
+		}
+	}
+}
+
+// Features Section
+#features {
+	.features-item {
+		text-align: center;
+		padding: 20px;
+		height: 270px;
+		.icon {
+			font-size: 90px;
+		}
+		@media (max-width: @screen-xs-max) {
+			max-width: 320px;
+			.center-block();
+		}
+	}
+}
+
+// Impact Section
+#impact {
+	.hreview {
+	  position: relative;
+	  padding: 0 10px;
+	  border: none;
+	}
+  .caption {
+    position: absolute;
+    top: auto;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    line-height: 1.1;
+    background: hsla(0,0,10%,0.55);
+    blockquote,
+  	.reviewer {
+      margin: 0 6px;
+      padding: 0;
+    }
+    blockquote {
+	    margin-top: 4px;
+	    border: none;
+	    font-family: @font-family-serif;
+	    font-size: @font-size-large;
+	    color: #fff;
+	  }
+	  .reviewer {
+	    margin-top: 2px;
+	    margin-bottom: 4px;
+	    text-align: right;
+	    color: @gray-lighter;
+	  }
+	}
+	.review-item-1 .caption {
+	  top: 0;
+	  left: 10px;
+	  right: 20%;
+	  bottom: auto;
+	}
+	.review-item-2 .caption {
+	  top: auto;
+	  left: 10px;
+	  right: 17%;
+	  bottom: 0;
+	}
+	.review-item-3 .caption {
+	  top: auto;
+	  left: 17%;
+	  right: 10px;
+	  bottom: 0;
+	}
+	.review-item-4 .caption {
+    top: 0;
+    left: 62%;
+    right: 10px;
+    bottom: auto;
+    .reviewer {
+      margin-top: 6px;
+      text-align: left;
+    }
+  }
+  .review-item-5 .caption {
+    top: 0;
+    left: 17%;
+    right: 10px;
+    bottom: auto;
+  }
+	.review-item-6 .caption {
+	  top: 0;
+	  left: 10px;
+	  right: 63%;
+	  bottom: auto;
+	  .reviewer {
+	    margin-top: 6px;
+	    text-align: left;
+	  }
+	}
+	.review-item-7 .caption {
+	  top: 0;
+	  left: 62%;
+	  right: 10px;
+	  bottom: auto;
+	  .reviewer {
+	    margin-top: 6px;
+	    text-align: left;
+	  }
+	}
+}
+// Cutting and trimming for masonry layout
+#impact {
+	@media (max-width: @screen-xs-max) {
+		.reviews {
+			max-width: 400px;
+			.center-block();
+		}
+	}
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+	  .review-item-5 {
+	    height: 474px;
+	    overflow: hidden;
+	    img {
+	      width: 100%;
+	    }
+	  }
+	}
+  @media (min-width: @screen-md-min) {
+    .review-item-4 {
+      display: none;
+    }
+  }
+}
