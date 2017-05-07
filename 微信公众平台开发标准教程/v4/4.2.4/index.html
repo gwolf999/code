@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>     
+<head>        
+ <meta charset="UTF-8">        
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">         
+<title>WeUI</title>         
+<link rel="stylesheet" href="../css/weui.min.css"/>
+<style type="text/css">
+	*{margin:0px;padding:0px;}
+	body{padding:10px;}
+</style>
+<script type="text/javascript" src="../js/jq.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var timer ;								// 计时器
+		var second = 0;							// 秒数
+
+		$('#btnStartProgress').click(function(){
+			if(second == 0)
+			{
+				timer = setInterval(function(){
+					second ++; 					// 每秒增加1秒
+					$('.js_progress').css({width:second+"%"});//动态定义进度条的宽度
+					if(second == 100) 			//进度条达到百分之百的时候停止
+					{
+						$('#toast').show(); 	// 显示上传结束Toast提示框
+						init_time();
+						setTimeout(function(){
+							init_progress();
+							$('#toast').hide();
+						},2000)					//上传成功后2秒隐藏提示并初始化上传进度条
+					}
+				},1000);						//1秒上传百分之1
+			}
+		})
+
+		// 取消上传操作
+		$('.weui_icon_cancel').click(function(){
+			if(second != 0)
+			{
+				init_time();			// 清除计时器并重置时间为0
+				init_progress();
+				$('#toast').show();
+				$('.change_content').text('已取消上传');
+				setTimeout(function(){
+							$('#toast').hide();
+							$('.change_content').text('已完成上传');
+					},2000);
+			}
+		})
+
+		// 重置时间和计时器
+		function init_time()
+		{
+			clearInterval(timer);				//清除计时器
+			second = 0;							//重置时间
+		}
+
+		// 重置进度条进度
+		function init_progress()
+		{
+			$('.js_progress').css({width:"0%"});// 进度条归零
+		}
+
+	})
+</script>
+</head>    
+<body>
+	<div>使用计时器模拟文件上传：</div>
+	<div class="bd spacing">
+    <div class="weui_progress">
+        <div class="weui_progress_bar">
+            <div class="weui_progress_inner_bar js_progress" style="width: 0%;"></div>
+        </div>
+        <a href="javascript:;" class="weui_progress_opr">
+            <i class="weui_icon_cancel"></i>
+        </a>
+    </div>
+  
+    <div class="weui_btn_area">
+        <a href="javascript:;" class="weui_btn weui_btn_primary weui_btn_disabled" id="btnStartProgress">上传</a>
+    </div>
+
+   	<!--toast-->
+    <div id="toast" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+    <div class="weui_toast">
+        <i class="weui_icon_toast"></i>
+        <p class="weui_toast_content change_content">已完成上传</p>
+    </div>
+</div>
+</div>
+</body> 
+</html> 

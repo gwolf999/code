@@ -1,0 +1,68 @@
+<extend name="Public/base"/>
+
+<block name="body">
+	<!-- 标题 -->
+	<div class="main-title">
+		<h2>
+		{$meta_title}
+		</h2>
+	</div>
+
+	<!-- 按钮工具栏 -->
+	<div class="cf">
+		<div class="fl">
+			<a class="btn"  href="{:U("Goods/edit")}">新增系列</a>
+			<button class="btn ajax-post" target-form="ids" url="{:U("Goods/setStatus",array("status"=>1))}">启 用</button>
+			<button class="btn ajax-post" target-form="ids" url="{:U("Goods/setStatus",array("status"=>0))}">禁 用</button>
+			<button class="btn ajax-post confirm" target-form="ids" url="{:U("Goods/setStatus",array("status"=>-1))}">删 除</button>
+		</div>
+	</div>
+
+	<!-- 数据表格 -->
+	<div class="data-table">
+		<table class="">
+	<thead>
+		<tr>
+		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+		<th class="">ID</th>
+		<th class="">商品分类名称</th>
+		<th class="">商品分类缩略图</th>
+		<th class="">商品分类简介</th>
+		<th class="">商品创建时间</th>
+		<th class="">状态</th>
+		<th class="">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<volist name="_list" id="vo">
+		<tr>
+			<td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
+			<td>{$vo.id}</td>
+			<td>{$vo.name}</td>
+			<td><img width="200px" src="__ROOT__{$vo.img_id|get_cover='path'}"></td>
+			<td>{$vo.content|msubstr='0,20'}</td>
+			<td><span>{$vo.create_time|time_format}</span></td>
+			<td>{$vo.status|get_status_title}</td>
+			<td><a href="{:U('Goods/edit?&id='.$vo['id'])}">编辑</a>
+				<a href="{:U('Goods/setStatus?ids='.$vo['id'].'&status='.abs(1-$vo['status']))}" class="ajax-get">{$vo.status|show_status_op}</a>
+				<a href="{:U('Goods/setStatus?status=-1&ids='.$vo['id'])}" class="confirm ajax-get">删除</a>
+			</td>
+		</tr>
+		</volist>
+	</tbody>
+	</table>
+	</div>
+	<!-- 分页 -->
+	<div class="page">
+		{$_page}
+	</div>
+</div>
+</block>
+<block name="script">
+<script type="text/javascript">
+$(function(){
+	// 导航高亮
+	highlight_subnav('{:U('Goods/index')}');
+})
+</script>
+</block>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>     
+<head>        
+ <meta charset="UTF-8">        
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">         
+<title>WeUI</title>         
+<link rel="stylesheet" href="../css/weui.min.css"/>
+<style type="text/css">
+	*{margin:0px;padding:0px;}
+</style>
+<script type="text/javascript" src="../js/jq.js"></script>
+<script type="text/javascript">
+	$(function(){
+        $('#showActionSheet').click(function(){
+            $('#weui_actionsheet').slideToggle("fast");// 快速弹出菜单
+            $('#coverDiv').show();                     // 显示遮罩层
+        })
+	})
+</script>
+</head>    
+<body>
+<a href="javascript:;" class="weui_btn weui_btn_primary" id="showActionSheet">上传图片</a>
+<div class="weui_mask_transition weui_fade_toggle" id="coverDiv" style="display: none ;"></div>
+<div class="weui_actionsheet weui_actionsheet_toggle" id="weui_actionsheet" style="display:none">
+    <div class="weui_actionsheet_menu">
+        <div class="weui_actionsheet_cell"><i class="weui_icon_download"></i>&nbsp;手机相册</div>
+        <div class="weui_actionsheet_cell"><i class="weui_icon_info_circle"></i>&nbsp;拍照</div>
+    </div>
+    <div class="weui_actionsheet_action">
+        <div class="weui_actionsheet_cell" id="actionsheet_cancel">取消</div>
+    </div>
+</div>
+</body> 
+</html> 

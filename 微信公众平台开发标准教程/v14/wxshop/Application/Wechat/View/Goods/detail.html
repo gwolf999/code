@@ -1,0 +1,116 @@
+<include File="Public/header"/>
+<style>
+	/* 底部购买和加入购物车按钮 start*/
+	.goods_buy_bar{width:16rem;position: fixed;z-index: 999;bottom: 0;left: 0;width: 100%;height: 2rem;padding: 0 0.75rem;border-top: 1px solid #ccc;background: #fff;}
+	.goods_buy_btn{display: block;border:1px solid red;line-height: 1.7rem;height:1.7rem;text-align: center;font-size: 0.7rem;border-radius: 0.2rem;margin-top: 0.05rem;float: left;}
+	.buy_now{background: #fff;width:10rem;}
+	.buy_car{width:4rem;margin-left: 0.3rem;color:white;background: red;}
+	body{background: #eee;}
+	/* 底部购买和加入购物车按钮 end*/
+
+	/*商品详情 start*/
+	.goods_detail{width:16rem;}
+	.goods_detail .goods_img img{width:16rem;height:12rem;}
+	.goods_detail .goods_price{border-bottom: 1px solid #eee;line-height:1.5rem;padding:0.5rem;color: #999;font-size:0.8rem;background: #fff;}
+	.goods_detail .goods_price span{ color :red;font-size: 1rem;}
+	.goods_title{padding:0.5rem;display: block;font-size: 0.8rem;color:#000;font-weight: blod;background: #fff;}
+	.goods_info{padding:0.5rem;margin-top: 0.2rem;margin-bottom: 0.2rem;background: #fff;color: #999;font-size: 0.7rem;}
+	.goods_content{width: 16rem;margin-top: 0.2rem;background: #fff;font-size:0.7rem;}
+	/*商品详情 end*/
+
+</style>
+<div class="content">
+
+	<div class="top_search" >
+		<div class="top_bar">
+			商品详情
+		</div>
+	</div>
+
+	<div class="goods_detail">
+		<div class="goods_img">
+			<img src="__ROOT__{$goods_info.img_id|get_cover=###,'path'}" />
+		</div>
+		<div class="goods_price">
+			￥<span>{$goods_info.price}</span>
+		</div>
+		<div class="goods_title">
+			{$goods_info.name}
+		</div>
+
+		<div class="goods_info">
+			<div class="goods_line">
+				<span>库存：</span>
+				<span>{$goods_info.goods_cates_id|getGoodsCatesName}</span>
+			</div>
+			<div class="goods_line">
+				<span>库存：</span>
+				<span>{$goods_info.repertory}</span>
+			</div>
+			<div class="goods_line">
+				<span>产地：</span>
+				<span>{$goods_info.production_place}</span>
+			</div>
+
+		</div>
+
+		<div class="goods_content">
+			{$goods_info.content}
+		</div>
+	</div>
+	<div class="goods_buy_bar">
+		<a href="javascript:;" class="goods_buy_btn buy_now">立即购买</a>
+		<a href="{:U('Index/shopcar')}" class="goods_buy_btn buy_car">购物车</a>
+		<div class="clear_all"></div>
+	</div>
+
+	<script>
+		$(function(){
+			$('.buy_now').click(function(){
+				var goods_id = "{$goods_info.id}";
+				var repertory = "{$goods_info.repertory}";
+				if(repertory < 1 )
+				{
+					alert('已售罄！');
+					return false;
+				}
+				var uid = "{$user_info.uid}";
+				var uid = 1;
+				if(goods_id && uid)
+				{
+					$.post("{:U('Goods/addShopCar')}" ,
+						{
+							goods_id:goods_id,
+							uid:uid,
+							time:new Date().getTime()
+						},
+						function(msg){
+							if(msg.status == 1)
+							{
+								if(confirm('添加成功，是否继续购物！'))
+								{
+									return true;
+								}
+								else
+								{
+									window.location.href = "{:U('Index/shopcar')}";
+								}
+							}
+							else
+							{
+								alert(msg.msg);
+								return false;
+							}
+						})
+				}
+				else
+				{
+					alert('参数错误！');
+					return false;
+				}
+			})
+		})
+	</script>
+</div>
+
+<include File="Public/footer"/>

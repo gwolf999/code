@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>检索充电桩位置</title>
+	<style type="text/css">
+		body{padding:0px;}
+		.show_title{padding:0px;}
+		.search_btn{padding:0px;width: 100%;text-align: margin:0px;}
+		.div_base{padding:0px;font-size: 20px;}
+	</style>
+	<link rel="stylesheet" href="__PUBLIC__/static/weui.min.css"/>
+	<script src="__PUBLIC__/static/jquery-2.0.3.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<!--引入腾讯地图JS-API-->
+	<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+
+</head>
+
+<body onload="init()">
+	<script>
+		var searchService, markers = [];
+		var show_address;
+		var lat ;
+		var lng ;
+		var init = function() {
+			var center = new qq.maps.LatLng(39.916527, 116.397128);
+			var map = new qq.maps.Map(document.getElementById('container'), {
+				center: center,
+				zoom: 13
+			});
+
+			var latlngBounds = new qq.maps.LatLngBounds();
+			//设置Poi检索服务，用于本地检索、周边检索
+			searchService = new qq.maps.SearchService({
+				//设置搜索范围为北京
+				location: "北京",
+				//设置搜索页码为1
+				pageIndex: 1,
+				//设置每页的结果数为5
+				pageCapacity: 5,
+				//设置展现查询结构到infoDIV上
+				panel: null,
+				//设置动扩大检索区域。默认值true，会自动检索指定城市以外区域。
+				autoExtend: true,
+				//检索成功的回调函数
+				complete: function(results) {
+					//设置回调函数参数
+					var pois = results.detail.pois;
+					var infoWin = new qq.maps.InfoWindow({
+						map: map
+					});
+					for (var i = 0, l = pois.length; i < l; i++) {
+						var poi = pois[i];
+						//扩展边界范围，用来包含搜索到的Poi点
+						latlngBounds.extend(poi.latLng);
+						(function(n) {
+							var marker = new qq.maps.Marker({
+								map: map
+							});
+							marker.setPosition(pois[n].latLng);
+
+							marker.setTitle(i + 1);
+							markers.push(marker);
+
+
+							qq.maps.event.addListener(marker, 'click', function() {
+								infoWin.open();
+								show_address = pois[n].address;
+								lat = pois[n].latLng.lat;
+								lng = pois[n].latLng.lng;
+								if(pois[n].address == undefined)
+								{
+									show_address = $('#keyword').val();
+								}
+								infoWin.setContent(
+									'<div style="width:280px;min-height:20px;">选中地址：'+show_address+'</div>'
+								);
+								infoWin.setPosition(pois[n].latLng);
+								$('#infoDiv').html("<div class='div_base'>所选地址：<p>"+show_address+"</p></div><div class='div_base'><a href='javascript:;' class='weui_btn weui_btn_primary' onclick='post_data()'>确定注册此位置</a></div>");
+							});
+						})(i);
+					}
+					//调整地图视野
+					map.fitBounds(latlngBounds);
+				},
+				//若服务请求失败，则运行以下函数
+				error: function() {
+					alert("出错了。");
+				}
+			});
+
+		}
+
+		 //清除地图上的marker
+		function clearOverlays(overlays) {
+			var overlay;
+			while (overlay = overlays.pop()) {
+				overlay.setMap(null);
+			}
+		}
+		//设置搜索的范围和关键字等属性
+		function searchKeyword() {
+			var keyword = document.getElementById("keyword").value;
+			clearOverlays(markers);
+			//根据输入的城市设置搜索范围
+			// searchService.setLocation("北京");
+			//根据输入的关键字在搜索范围内检索
+			searchService.search(keyword);
+		}
+
+		// 保存地址数据
+		function post_data()
+		{
+			$.post("{:U('saveAddress')}" , {
+					time:new Date().getTime() ,
+					lat:lat,
+					lng:lng,
+					address:show_address
+				},
+				function(msg){
+					if(msg.status == 1)
+					{
+						$('#toast').show();
+					}
+					setTimeout(function(){
+						window.location.href = "{U('Index/index')}";
+					},1000);
+				}
+			);
+		}
+	</script>
+	<div class="show_title">
+		<h2>请输入充电桩的位置：</h2>
+	</div>
+	<div>
+		<div class="weui_cell">
+			<div class="weui_cell_hd"><label class="weui_label">地址：</label></div>
+			<div class="weui_cell_bd weui_cell_primary">
+				<input class="weui_input" id="keyword" type="text" placeholder="请输入充电桩所在位置">
+			</div>
+		</div>
+		<div class="search_btn">
+			<a class="weui_btn weui_btn_primary" onclick="searchKeyword()">搜索</a>
+		</div>
+	</div>
+	<div style="width:100%;height:300px" id="container"></div>
+	<div style='width: 100%; height: 180px' class="div_base" id="infoDiv">
+		<h4>说明：地址查询后请在地图上点击选择坐标点并保存！</h4>
+	</div>
+	<div id="toast" style="display: none;">
+	<div class="weui_mask_transparent"></div>
+	<div class="weui_toast">
+		<i class="weui_icon_toast"></i>
+		<p class="weui_toast_content">保存成功！</p>
+	</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>WeUI</title>
+<link rel="stylesheet" href="__PUBLIC__/static/weui.min.css"/>
+<style>
+	body{background: #eee;}
+	.address_list{padding:10px;background: #fff;margin-bottom: 10px;}
+	.address_content{font-size: 16px;font-weight: bold;margin-bottom: 10px;}
+	.address_distance{font-size:14px;color:#999;}
+</style>
+<script src="__PUBLIC__/static/jquery-2.0.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body style="padding:10px;">
+	<h2>附近的充电桩</h2>
+	<div class="show_list">
+		正在检索中...
+	</div>
+	<script>
+	wx.config({
+		debug: false,
+		appId: '<?php echo $signPackage["appId"];?>',
+		timestamp: <?php echo $signPackage["timestamp"];?>,
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+		// 所有要调用的 API 都要加到这个列表中
+		'getLocation',	// 获取地理位置信息接口
+		]
+	});
+	wx.ready(function () {
+		// 在这里调用 API
+		wx.getLocation({
+		type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+		success: function (res) {
+			var latitude = res.latitude;			// 纬度，浮点数，范围为90 ~ -90
+			var longitude = res.longitude;			// 经度，浮点数，范围为180 ~ -180。
+			$.post("{:U('getAddressList')}" ,		// 发送请求进行查找操作
+				{
+					time:new Date().getTime(),
+					lat:latitude ,					// 纬度
+					lng : longitude					// 经度
+				},
+				function(msg){
+					$('.show_list').html(msg.data);	// 展示查询结果集
+				})
+			}
+		});
+	});
+	</script>
+</body>
+</html>

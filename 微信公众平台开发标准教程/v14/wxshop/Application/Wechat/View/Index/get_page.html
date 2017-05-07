@@ -1,0 +1,23 @@
+	<volist name="goods_list" id="vo">
+	<div class="goods_content">
+		<if condition="$vo[0]">
+			<a href="{:U('Goods/detail' , array('id'=>$vo[0]['id']))}">
+			<div class="goods">
+				<img src="__ROOT__{$vo.0.img_id|get_cover=### , 'path'}" />
+				<div class="goods_desc">{$vo.0.name}</div>
+				<div class="goods_price">￥{$vo.0.price}</div>
+			</div>
+			</a>
+		</if>
+		<if condition="$vo[1]">
+			<a href="{:U('Goods/detail' , array('id'=>$vo[0]['id']))}">
+			<div class="goods">
+				<img src="__ROOT__{$vo.1.img_id|get_cover=### , 'path'}" />
+				<div class="goods_desc">{$vo.1.name}</div>
+				<div class="goods_price">￥{$vo.1.price}</div>
+			</div>
+			</a>
+		</if>
+		<div style="clear:all;"></div>
+	</div>
+	</volist>

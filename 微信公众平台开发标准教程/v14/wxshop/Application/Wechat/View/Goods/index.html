@@ -1,0 +1,68 @@
+<include File="Public/header"/>
+<style>
+	.top_bar{
+		width:16rem;line-height: 2.25rem;height: 2.25rem;
+    text-align: center;
+    background-color: #fff;
+    overflow: hidden;
+    border-bottom: 1px solid #f0f0f0;}
+
+	/*商品列表 start*/
+	.goods_list_title{width: 16rem;line-height: 1.8rem;text-align: center;center;color:#999;font-size: 0.7rem;border-bottom: 1px solid #eee;}
+	.goods_content{width:100%;height:9.5rem;margin-top: 0.5rem;margin-bottom: 0.2rem;}
+	.goods_content .goods{width:8rem;float:left;background: #fff;padding-top: 0.1rem;}
+	.goods img{width:7.7rem;height: 6.5rem;display:block;margin: 0 auto;}
+	.goods .goods_desc{font-size: 0.5rem;padding:0.2rem;line-height:0.8rem;}
+	.goods .goods_price{font-size: 0.7rem;padding:0.2rem;color:red;font-weight: bold;}
+	.goods_nav{width:100%;text-align: center;line-height: 1rem;font-size: 0.7rem;background: #fff;margin-top:1.5rem;margin-bottom: 0.2rem;}
+	/*商品列表 end*/
+
+	.show_next{width:15rem;line-height: 1.7rem;margin:1rem auto;text-align: center;font-size: 0.7rem;border:1px solid #ddd;}
+</style>
+<div class="content">
+
+	<div class="top_search" >
+		<div class="top_bar">
+			商品列表
+		</div>
+	</div>
+
+	<div class="goods_list">
+		<if condition="!empty($goods_cates_info)">
+			<div class="goods_list_title">所属系列：{$goods_cates_info.name}</div>
+		<else/>
+			<div class="goods_list_title">搜索关键字：{$keys}</div>
+		</if>
+		<if condition="$goods_list">
+		<volist name="goods_list" id="vo">
+			<div class="goods_content">
+				<if condition="$vo[0]">
+					<a href="{:U('Goods/detail' , array('id'=>$vo[0]['id']))}">
+						<div class="goods">
+							<img src="__ROOT__{$vo.0.img_id|get_cover=### , 'path'}" />
+							<div class="goods_desc">{$vo.0.name}</div>
+							<div class="goods_price">￥{$vo.0.price}</div>
+						</div>
+					</a>
+				</if>
+				<if condition="$vo[1]">
+					<a href="{:U('Goods/detail' , array('id'=>$vo[1]['id']))}">
+						<div class="goods">
+							<img src="__ROOT__{$vo.1.img_id|get_cover=### , 'path'}" />
+							<div class="goods_desc">{$vo.1.name}</div>
+							<div class="goods_price">￥{$vo.1.price}</div>
+						</div>
+					</a>
+				</if>
+				<div style="clear:all;"></div>
+			</div>
+			</volist>
+		<else/>
+			<div class="empty_list">暂无商品</div>
+		</if>
+	</div>
+	<div class="show_next" style="display:none;">查看更多</div>
+
+</div>
+
+<include File="Public/footer"/>

@@ -1,0 +1,166 @@
+<include File="Public/header"/>
+<style>
+	/*头部导航样式 start*/
+	.top_bar{width:16rem;line-height: 2.25rem;height: 2.25rem;text-align: center;background-color: #fff;overflow: hidden;border-bottom: 1px solid #f0f0f0;}
+	.top_input{float:left;width: 13rem;}
+	.top_input input {border-radius: 0.2rem;font-size:0.7rem;width:12rem;padding-left:0.25rem;margin:0.25rem auto;border:1px solid #eee;line-height: 1.6rem;background: #ebebeb;}
+	.top_btn{width:4rem;height: 2.25rem;background: #fff;}
+	.top_btn_search{float:left;border-radius: 0.2rem;width:1.5rem;display: block;font-size: 0.6rem;border:1px solid #999;height:1.2rem;line-height: 1.2rem;margin-top:0.45rem;}
+	.top_btn_car{float:left;display: block;margin-top: 0.45rem;}
+	.top_btn_car img{width:1.4rem;}
+	.top_btn{float:left;width:3rem}
+	/*头部导航样式 emd*/
+
+	/*置顶图片 start*/
+	.top_imgs{width:16rem;background: #eee;min-height:10rem;margin-top:2.25rem;}
+	.top_imgs img{width:16rem;}
+	/*置顶图片 start*/
+
+	/*商品分类 start*/
+	.goods_cates{width:16rem;}
+	.goods_cates_title{width: 16rem;line-height: 1.8rem;height:1.8rem;text-align: center;color:#999;font-size: 0.7rem;}
+	.goods_cates_list{width:16rem;}
+	.cates{width:7.91rem;height:5.2rem;float: left;border:1px solid #eee;}
+	.cates_img{width:6rem;height:4rem;margin:0 auto;}
+	.cates_img img{width:6rem;height:4rem;}
+	.cates_name{width:6rem;margin:0 auto;text-align: center;font-size: 0.7rem;}
+	/*商品分类 end*/
+
+	/*商品列表 start*/
+	.goods_list_title{width: 16rem;line-height: 1.8rem;text-align: center;center;color:#999;font-size: 0.7rem;border-bottom: 1px solid #eee;}
+	.goods_content{width:100%;height:9.5rem;margin-top: 0.5rem;margin-bottom: 0.2rem;}
+	.goods_content .goods{width:8rem;float:left;background: #fff;padding-top: 0.1rem;}
+	.goods img{width:7.7rem;height: 6.5rem;display:block;margin: 0 auto;}
+	.goods .goods_desc{font-size: 0.5rem;padding:0.2rem;line-height:0.8rem;}
+	.goods .goods_price{font-size: 0.7rem;padding:0.2rem;color:red;font-weight: bold;}
+	.goods_nav{width:100%;text-align: center;line-height: 1rem;font-size: 0.7rem;background: #fff;margin-top:1.5rem;margin-bottom: 0.2rem;}
+	/*商品列表 end*/
+
+	/*分页按钮 start*/
+	.show_next{width:15rem;line-height: 1.7rem;margin:1rem auto;text-align: center;font-size: 0.7rem;border:1px solid #ddd;}
+	/*分页按钮 end*/
+
+</style>
+<div class="content">
+
+	<div class="top_search" style="position: fixed; top: 0px; z-index: 100;">
+		<div class="top_bar">
+			<div class="top_input">
+				<input type="text" name="search" value="" placeholder="请输入想要搜索的商品名称">
+			</div>
+			<div class="top_btn">
+				<a href="javascript:;" class="top_btn_search">搜索</a>
+				<a href="{:U('Index/shopcar')}" class="top_btn_car"><img src="__PUBLIC__/Wechat/images/car.png"></a>
+				<div style="clear:all;"></div>
+			</div>
+			<div style="clear:all;"></div>
+		</div>
+	</div>
+	<div class="top_imgs">
+		<ul>
+				<li>
+					<a href="{:U('Goods/detail',array('id'=>$top_goods_info['id']))}">
+						<img src="__ROOT__{$top_goods_info.img_id|get_cover=### , 'path'}">
+					</a>
+				</li>
+		</ul>
+	</div>
+	<div class="goods_cates">
+		<div class="goods_cates_title">商品分类</div>
+		<div class="goods_cates_list">
+			<volist name="goods_cates_list" id="vo">
+				<a href="{:U('Goods/index' , array('id'=>$vo['id']))}">
+				<div class="cates">
+					<div class="cates_img"><img src="__ROOT__{$vo.img_id|get_cover=### , 'path'}"></div>
+					<div class="cates_name">{$vo.name}</div>
+				</div>
+				</a>
+			</volist>
+			<div style="clear:all;"></div>
+		</div>
+	</div>
+
+	<div class="goods_list">
+		<div class="goods_list_title">所有商品</div>
+		<volist name="goods_list" id="vo">
+		<div class="goods_content">
+			<if condition="$vo[0]">
+				<a href="{:U('Goods/detail' , array('id'=>$vo[0]['id']))}">
+				<div class="goods">
+					<img src="__ROOT__{$vo.0.img_id|get_cover=### , 'path'}" />
+					<div class="goods_desc">{$vo.0.name}</div>
+					<div class="goods_price">￥{$vo.0.price}</div>
+				</div>
+				</a>
+			</if>
+			<if condition="$vo[1]">
+				<a href="{:U('Goods/detail' , array('id'=>$vo[1]['id']))}">
+				<div class="goods">
+					<img src="__ROOT__{$vo.1.img_id|get_cover=### , 'path'}" />
+					<div class="goods_desc">{$vo.1.name}</div>
+					<div class="goods_price">￥{$vo.1.price}</div>
+				</div>
+				</a>
+			</if>
+			<div style="clear:all;"></div>
+		</div>
+		</volist>
+	</div>
+	<div class="show_next" style="display:none;" page=1>查看更多</div>
+	<script>
+		$(function(){
+			// 搜索
+			$('.top_btn_search').click(function(){
+				var keys =$('input[name="search"]').val();
+				if(keys != '')
+				{
+					window.location.href = "{:U('Goods/index')}?keys=" + keys;
+				}
+				else
+				{
+					return false;
+				}
+			})
+
+			// 判断是否要显示下一页按钮
+			var total_page = "{$total_page}";
+			var now_page = $('.show_next').attr('page');
+			if(total_page > now_page)
+			{
+				$('.show_next').show();
+			}
+
+			var is_click = true;
+			// 点击下一页
+			$('.show_next').click(function(){
+				if(!is_click)
+				{
+					return false;
+				}
+				$(this).text('正在加载...');
+				is_click = false;
+				var _self = $(this);
+				var next_page = Number(_self.attr('page')) + 1;
+				_self.attr('page' , next_page);
+
+				$.post("{:U('getPage')}" , {page:next_page,time:new Date().getTime()} , function(msg){
+					if(msg != '')
+					{
+						$('.goods_list').append(msg);
+						if(next_page == total_page)
+						{
+							_self.hide();
+						}
+						_self.text('查看更多');
+					}
+					else {
+						_self.text('暂无新数据');
+					}
+					is_click = true;
+				})
+			})
+		})
+	</script>
+</div>
+
+<include File="Public/footer"/>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>WeUI</title>
+<link rel="stylesheet" href="__PUBLIC__/static/weui.min.css"/>
+<script src="__PUBLIC__/static/jquery-2.0.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body style="padding:10px;">
+	<a href="{:U('Pay/index')}" class="weui_btn weui_btn_primary show_api_status">微信支付</a>
+    <script>
+	$(function(){
+		// 查看接口是否可用
+		$('.show_api_status').click(function(){
+			wx.checkJsApi({
+			jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+			success: function(res) {
+				alert('chooseImage:' + res.errMsg);
+			}
+			});
+		})
+	})
+	wx.config({
+		debug: true,
+		appId: '<?php echo $signPackage["appId"];?>',
+		timestamp: <?php echo $signPackage["timestamp"];?>,
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+		// 所有要调用的 API 都要加到这个列表中
+		'chooseImage',
+		]
+	});
+	wx.ready(function () {
+	// 在这里调用 API
+	});
+
+	</script>
+</body>
+</html>

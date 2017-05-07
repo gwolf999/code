@@ -1,0 +1,122 @@
+<extend name="Public/base"/>
+<block name="body">
+	<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="main-title">
+		<h2>{$meta_title}</h2>
+	</div>
+	<form action="{:U('goods_update')}" method="post" class="form-horizontal">
+		<input type="hidden" name="id" value="{$info.id}">
+		<div class="form-item">
+			<label class="item-label">商品名称<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="name" value="{$info.name}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">商品所属分类<span class="check-tips"></span></label>
+			<div class="controls">
+				<select name="goods_cates_id">
+					<volist name="goods_cates_list" id="vo">
+						<option value="{$vo.id}" <if condition="$info['goods_cates_id'] eq $vo['id']">selected</if>>{$vo.name}</option>
+					</volist>
+				</select>
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">排序<span class="check-tips">(置顶的时候用)</span></label>
+			<div class="controls">
+				<input type="text" class="text input-2x" name="sort" value="{$info.sort|default=0}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">是否置顶<span class="check-tips">(是否置顶轮播图)</span></label>
+			<div class="controls">
+				是：<input type="radio" name="is_top" value="1" <if condition="$info['is_top'] eq 1">checked</if>>
+				否：<input type="radio" name="is_top" value="0" <if condition="$info['is_top'] eq 0">checked</if>>
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">商品价格<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-2x" name="price" value="{$info.price}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">商品库存<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-2x" name="repertory" value="{$info.repertory}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">分类图片<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="file" id="upload_picture_img_id">
+				<input type="hidden" name="img_id" id="cover_id_img_id" value="{$info.img_id}"/>
+				<div class="upload-img-box">
+				<notempty name="info">
+					<div class="upload-pre-item"><img src="__ROOT__{$info.img_id|get_cover='path'}"/></div>
+				</notempty>
+				</div>
+			</div>
+			<script type="text/javascript">
+			//上传图片
+			/* 初始化上传插件 */
+			$("#upload_picture_img_id").uploadify({
+				"height"		  : 30,
+				"swf"			 : "__STATIC__/uploadify/uploadify.swf",
+				"fileObjName"	 : "download",
+				"buttonText"	  : "上传图片",
+				"uploader"		: "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+				"width"		   : 120,
+				'removeTimeout'	  : 1,
+				'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
+				"onUploadSuccess" : uploadPictureimg_id,
+				'onFallback' : function() {
+					alert('未检测到兼容版本的Flash.');
+				}
+			});
+			function uploadPictureimg_id(file, data){
+				var data = $.parseJSON(data);
+				var src = '';
+				if(data.status){
+					$("#cover_id_img_id").val(data.id);
+					src = data.url || '__ROOT__' + data.path
+					$("#cover_id_img_id").parent().find('.upload-img-box').html(
+						'<div class="upload-pre-item"><img src="' + src + '"/></div>'
+					);
+				} else {
+					updateAlert(data.info);
+					setTimeout(function(){
+						$('#top-alert').find('button').click();
+						$(that).removeClass('disabled').prop('disabled',false);
+					},1500);
+				}
+			}
+			</script>
+		</case>
+		</div>
+		<div class="form-item">
+			<label class="item-label">商品产地<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="production_place" value="{$info.production_place}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">商品简介<span class="check-tips"></span></label>
+			<div class="controls">
+				<textarea class="textarea" cols="80" rows="5" name="content">{$info.content}</textarea>
+			</div>
+		</div>
+		<div class="form-item">
+			<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+			<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+		</div>
+	</form>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		//导航高亮
+		highlight_subnav('{:U('Goods/index')}');
+	</script>
+</block>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>WeUI</title>
+<link rel="stylesheet" href="__PUBLIC__/static/weui.min.css"/>
+<script src="__PUBLIC__/static/jquery-2.0.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body style="padding:10px;">
+	<h2>当前的网络状态：<span id="show_info">正在获取...</span></h2>
+	<script>
+	wx.config({
+		debug: true,
+		appId: '<?php echo $signPackage["appId"];?>',
+		timestamp: <?php echo $signPackage["timestamp"];?>,
+		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+		signature: '<?php echo $signPackage["signature"];?>',
+		jsApiList: [
+		// 所有要调用的 API 都要加到这个列表中
+		'getNetworkType',	// 分享到微信好友
+		]
+	});
+	wx.ready(function () {
+		// 在这里调用 API
+		wx.getNetworkType({
+		    success: function (res) {
+		        var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
+				$('#show_info').html(networkType);
+		    }
+		});
+	});
+	</script>
+</body>
+</html>

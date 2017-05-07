@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>用户中心页</title>
+<link rel="stylesheet" href="__PUBLIC__/Wechat/css/weui.min.css"/>
+<script src="__STATIC__/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+    <div style="padding:10px;">
+        <img src="{$info.headimgurl}" style="display:block;width:100px;margin:0 auto;">
+    </div>
+    <div class="weui_cells_title">用户基本信息：</div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>微信昵称：{$info.nickname}</p>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>性别：{$info.sex|get_sex_title}</p>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>省市地区：{$info.country}-{$info.province}-{$info.city}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

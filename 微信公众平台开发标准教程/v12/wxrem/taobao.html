@@ -1,0 +1,222 @@
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet"  href="./css/index.css" />
+	<style>
+		body{background: #eee;}
+		/*搜索框 start*/
+		.head_search{width:100%;height:2rem;background: red;float: left;}
+		.head_search .search_logo{width:1.7rem;float: left;text-align: center;line-height: 2rem;color: #fff;}
+		.head_search .search_bar{width:12rem;float: left;}
+		.head_search .search_btn{width:2.3rem;float: left;line-height: 2rem;}
+		.head_search .search_btn a{font-size: 0.8rem;color:#fff;}
+		.head_search input{background: #B52600;border:0px;width:11.3rem;line-height: 1.6rem;margin-top: 0.2rem;
+			margin-left: 0rem;margin-bottom: 0.2rem;padding-left: 0.5rem;color:#fff;font-size:0.7rem;
+			border-radius: 0.8rem;}
+		/*搜索框 end*/
+
+		/*轮播图 start*/
+		.head_imgs{width:100%;height:7.6rem;background: #fff;}
+		.head_imgs img{width:100%;display: block;}
+		/*轮播图 end*/
+
+		/*商品分类导航 start*/
+		.nav{width:100%;height:6.5rem;background: #fff;margin-top: 0rem;margin-bottom: 0rem;}
+		.nav ul{width:100%;display: block;float: left;}
+		.nav ul li{float: left;width:3.2rem;height:3.2rem;background: #fff;}
+		.nav ul li span{font-size: 0.5rem;text-align: center;display: block;margin:0 auto;}
+		.nav img{width:2.2rem;display: block;margin:.2rem auto;}
+		/*商品分类导航 end*/
+
+		/*新闻头条 start*/
+		.news_title{width:100%;border-top: 1px solid #ddd;font-size: 0.7rem;line-height: 1.5rem;background: #fff;}
+		.news_logo{border-right:1px solid #ddd;padding-left: 0.5rem;padding-right: 0.5rem;}
+		/*新闻头条 end*/
+
+		/*商品推荐 start*/
+		.goods_top{width:100%;height:8rem;}
+		.goods_top .big_img img{width:7rem;float: left;height:8rem;}
+		.goods_top .small_img_list img{display: block;width:9rem;height: 4rem;float: left;}
+		.goods_top_nav{width:100%;text-align: center;line-height: 1rem;font-size: 0.7rem;background: #fff;margin-top:0.2rem;margin-bottom: 0.2rem;}
+		/*商品推荐 end*/
+
+		/*商品列表 start*/
+		.goods_content{width:100%;height:9.5rem;margin-top: 0.5rem;margin-bottom: 0.2rem;}
+		.goods_content .goods{width:8rem;float:left;background: #fff;padding-top: 0.1rem;}
+		.goods img{width:7.7rem;height: 6.5rem;display:block;margin: 0 auto;}
+		.goods .goods_desc{font-size: 0.5rem;padding:0.2rem;line-height:0.8rem;}
+		.goods .goods_price{font-size: 0.7rem;padding:0.2rem;color:red;font-weight: bold;}
+		.goods_nav{width:100%;text-align: center;line-height: 1rem;font-size: 0.7rem;background: #fff;margin-top:1.5rem;margin-bottom: 0.2rem;}
+		/*商品列表 end*/
+	</style>
+</head>
+<body>
+	<!--搜索区域开始-->
+	<div class="head_search">
+		<!--网页LOGO区域-->
+		<div class="search_logo">
+			淘
+		</div>
+		<!--搜索文本框-->
+		<div class="search_bar">
+			<input type="text" placeholder="要搜索什么商品"/>
+		</div>
+		<!--搜索执行按钮-->
+		<div class="search_btn">
+			<a href="#">搜索</a>
+		</div>
+		<div class="clear_all"></div>
+	</div>
+	<!--搜索区域结束-->
+	<!--轮播图开始-->
+	<div class="head_imgs">
+		<!--图片列表容器UL-->
+		<ul>
+			<li><a href="#"><img src="./images/img4.jpg" /></a></li>
+		</ul>
+	</div>
+	<!--轮播图结束-->
+	<div class="nav">
+		<ul class="nav_icon">
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="http://gw.alicdn.com/tps/TB1FDOHLVXXXXcZXFXXXXXXXXXX-183-129.png?imgtag=avatar" />
+					<span>天猫国际</span>
+				</a>
+			</li>
+
+			</ul>
+		<div class="clear_all"></div>
+	</div>
+	<!--商品新闻动态开始-->
+	<div class="news_title">
+		<span class="news_logo">最新头条</span>
+		<span class="news_content">[news!]新款手机频繁出现爆炸事故！</span>
+	</div>
+	<!--商品新闻动态结束-->
+	<!--商品推荐开始-->
+	<div class="goods_top">
+		<div class="goods_top_nav">今日爆款</div>
+		<div class="big_img">
+			<img src="./images/img2.jpg" />
+		</div>
+		<div class="small_img_list">
+			<img src="./images/img2.jpg">
+			<img src="./images/img2.jpg">
+		</div>
+		<div class="clear_all"></div>
+	</div>
+	<!--商品推荐结束-->
+	<div class="goods_list">
+		<div class="goods_nav">猜你喜欢</div>
+		<div class="goods_content">
+			<div class="goods">
+				<img src="./images/img1.jpg" />
+				<div class="goods_desc">[为你推荐]如何才能购买合适的Neri啊大大我的</div>
+				<div class="goods_price">￥100.0</div>
+			</div>
+			<div class="goods">
+				<img src="./images/img1.jpg" />
+				<div class="goods_desc">[为你推荐]如何才能购买合适的Neri啊大大我的</div>
+				<div class="goods_price">￥100.0</div>
+			</div>
+		</div>
+		<div class="goods_content">
+			<div class="goods">
+				<img src="./images/img1.jpg" />
+				<div class="goods_desc">[为你推荐]如何才能购买合适的Neri啊大大我的</div>
+				<div class="goods_price">￥100.0</div>
+			</div>
+			<div class="goods">
+				<img src="./images/img1.jpg" />
+				<div class="goods_desc">[为你推荐]如何才能购买合适的Neri啊大大我的</div>
+				<div class="goods_price">￥100.0</div>
+			</div>
+		</div>
+		<div class="goods_content">
+			<div class="goods">
+				<img src="./images/img1.jpg" />
+				<div class="goods_desc">[为你推荐]如何才能购买合适的Neri啊大大我的</div>
+				<div class="goods_price">￥100.0</div>
+			</div>
+			<div class="goods">
+				<img src="./images/img1.jpg" />
+				<div class="goods_desc">[为你推荐]如何才能购买合适的Neri啊大大我的</div>
+				<div class="goods_price">￥100.0</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+		<script>
+			(function (doc, win) {
+			  var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+				  var clientWidth = docEl.clientWidth;
+				  if (!clientWidth) return;
+				  docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+				};
+
+			  if (!doc.addEventListener) return;
+			  win.addEventListener(resizeEvt, recalc, false);
+			  doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+		</script>
+	</body>
+	</html>

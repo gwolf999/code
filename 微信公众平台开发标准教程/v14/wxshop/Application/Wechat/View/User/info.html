@@ -1,0 +1,56 @@
+<include File="Public/header"/>
+<style>
+	.user_info ul li{border-bottom:1px solid #ddd;min-height: 2.2rem;line-height: 2.2rem;padding:0.5rem;font-size: 0.8rem;}
+	.user_info ul li input{width:11rem;line-height:1.5rem;font-size: 0.8rem;border:0px;}
+	.address{width:100%;font-size: 0.8rem;padding:0.1rem;min-height: 9rem;border:1px solid #eee;border-radius: 0.1rem;}
+	.save_btn{display: block;width:14rem;line-height: 2rem;height:2rem;text-align: center;border:1px solid #999;border-radius: 0.2rem;margin:0.5rem auto;}
+</style>
+<div class="content">
+
+	<div class="top_search" >
+		<div class="top_bar">
+			个人中心
+		</div>
+	</div>
+	<div class="user_info">
+			<ul>
+				<li>
+					<span>收货人：</span>
+					<input type="text" name="name" value="{$info.name}" placeholder="填写真实姓名">
+				</li>
+				<li>
+					<span>手机号：</span>
+					<input type="text" name="mobile" value="{$info.mobile}" placeholder="填写手机号">
+				</li>
+				<li>
+					<div>收货地址：</div>
+					<textarea name="address" class="address">{$info.address}</textarea>
+				</li>
+			</ul>
+
+			<button class="save_btn">保存</button>
+	</div>
+	<script>
+		$(function(){
+		// 保存个人信息
+		$('.save_btn').click(function(){
+			var name = $('input[name="name"]').val();
+			var mobile = $('input[name="mobile"]').val();
+			var address = $('textarea[name="address"]').val();
+
+			$.post("{:U('update')}" , {time:new Date().getTime(), name:name,mobile:mobile,address:address} , function(msg){
+				if(msg.status == 1)
+				{
+					window.location.href = '{:U("User/index")}';
+				}
+				else
+				{
+					alert(msg.msg);
+				}
+			});
+		})
+	})
+	</script>
+</div>
+
+<include File="Public/footer"/>

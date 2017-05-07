@@ -1,0 +1,30 @@
+<include File="Public/header"/>
+<style>
+
+	.user_info{text-align: center;padding:1rem;border-bottom: 1px solid #eee;}
+	.user_info img{width:4rem;height:4rem;margin:0 auto;border:1px solid #eee;}
+	.user_info p{line-height: 1rem;font-size: 0.8rem;margin-top: 0.5rem;}
+
+	.setting_list ul li{padding:0.5rem;font-size: 0.8rem;border-bottom: 1px solid #ddd;}
+	.setting_list ul li span{font-weight: bold;float: right;}
+</style>
+<div class="content">
+
+	<div class="top_search" >
+		<div class="top_bar">
+			个人中心
+		</div>
+	</div>
+	<div class="user_info">
+		<img src="{$info.headimgurl}" />
+		<p>昵称：{$info.nickname}</p>
+	</div>
+	<div class="setting_list">
+		<ul>
+			<a href="{:U('Order/order_list')}"><li>我的订单<span>></span></li></a>
+			<a href="{:U('User/info')}"><li>收货地址<span>></span></li></a>
+		</ul>
+	</div>
+</div>
+
+<include File="Public/footer"/>

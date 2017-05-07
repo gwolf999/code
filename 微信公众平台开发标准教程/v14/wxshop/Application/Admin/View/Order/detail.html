@@ -1,0 +1,106 @@
+<extend name="Public/base"/>
+<block name="body">
+	<style>
+	.my_table{width:700px;background: #fff;border: 1px solid #ddd;}
+	.my_table th,td{line-height: 40px;height:40px;text-align: center;font-size: 14px;border:1px solid #eee;}
+	</style>
+	<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+	<div class="main-title">
+		<h2>{$meta_title}</h2>
+	</div>
+	<h3>订单信息:</h3>
+	<table class="my_table">
+		<tr>
+			<th>字段</th>
+			<th>值</th>
+		</tr>
+		<tr>
+			<td>订单ID</td>
+			<td>{$info.id}</td>
+		</tr>
+		<tr>
+			<td>订单号</td>
+			<td>{$info.order_number}</td>
+		</tr>
+		<tr>
+			<td>订单支付金额</td>
+			<td>{$info.pay_price}</td>
+		</tr>
+		<tr>
+			<td>下单用户</td>
+			<td>{$info.uid}</td>
+		</tr>
+		<tr>
+			<td>订单状态</td>
+			<td>{$info.id|get_order_status}</td>
+		</tr>
+	</table>
+
+	<h3>商品信息:</h3>
+	<table class="my_table">
+		<tr>
+			<th>商品名称</th>
+			<th>单价</th>
+			<th>购买数量</th>
+			<th>当前总价</th>
+		</tr>
+		<volist name="goods_list" id="vo">
+			<tr>
+				<td><a href="{:U('Goods/edit',array('id'=>$vo['goods_id']))}">{$vo.name}</a></td>
+				<td>￥{$vo.goods_price}</td>
+				<td>{$vo.goods_num}</td>
+				<td>￥{$vo.all_price}</td>
+			</tr>
+		</volist>
+	</table>
+
+	<h3>用户收货信息:</h3>
+	<table class="my_table">
+		<tr>
+			<th>字段</th>
+			<th>值</th>
+		</tr>
+		<tr>
+			<td>收货人</td>
+			<td>{$uinfo.name}</td>
+		</tr>
+		<tr>
+			<td>联系方式</td>
+			<td>{$uinfo.mobile}</td>
+		</tr>
+		<tr>
+			<td>收货地址</td>
+			<td>{$uinfo.address}</td>
+		</tr>
+	</table>
+
+	<h3>订单发货：</h3>
+	<form action="{:U('update')}" method="post" class="form-horizontal">
+		<input type="hidden" name="id" value="{$info.id}">
+		<div class="form-item">
+			<label class="item-label">物流信息：<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="ship_number" value="{$info.ship_number}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">发货状态：<span class="check-tips"></span></label>
+			<div class="controls">
+				是：<input type="radio" name="is_ship" value="1" <if condition="$info['is_ship'] eq 1">checked</if>>
+				否：<input type="radio" name="is_ship" value="0" <if condition="$info['is_ship'] eq 0">checked</if>>
+			</div>
+		</div>
+
+		<div class="form-item">
+			<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+			<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+		</div>
+	</form>
+</block>
+
+<block name="script">
+	<script type="text/javascript">
+		//导航高亮
+		highlight_subnav('{:U('Order/index')}');
+	</script>
+</block>

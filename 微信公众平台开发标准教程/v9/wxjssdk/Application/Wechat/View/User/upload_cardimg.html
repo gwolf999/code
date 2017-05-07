@@ -1,0 +1,86 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	 <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<title>WeUI</title>
+	<link rel="stylesheet" href="__PUBLIC__/static/weui.min.css"/>
+	<script src="__PUBLIC__/static/jquery-2.0.3.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<style>
+	.cardimg_bd{border:1px solid #ddd;border-radius: 5px;min-height:200px;text-align:center;line-height:200px;font-size:25px;color:#999;padding:5px;}
+	.preview_img{width:100%;display: block;}
+	</style>
+	</head>
+	<body style="padding:10px;">
+		<div class="weui_cell_bd weui_cell_primary">
+				<div class="weui_uploader">
+					<div class="weui_uploader_hd weui_cell">
+						<div class="weui_cell_bd weui_cell_primary">上传证件照图片</div>
+						<div class="weui_cell_ft show_upload_num">0/1</div>
+					</div>
+
+					<div class="cardimg_bd upload_img" style="">
+						<span>点击上传证件照片</span>
+					</div>
+				</div>
+				<div>
+					<h4>media_id:</h4>
+					<p class="media_id">--</p>
+					<h4>本地文件保存名称:</h4>
+					<p class="file_name">--</p>
+					<h4>本地文件保存完整路径:</h4>
+					<p class="save_path">--</p>
+				</div>
+		</div>
+		<script>
+		wx.config({
+			debug: false,
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+			// 所有要调用的 API 都要加到这个列表中
+			'chooseImage',		// 选择图片接口
+			'previewImage',		// 预览图片接口
+			'uploadImage',		// 上传图片接口
+			'downloadImage',	// 下载图片接口
+			]
+		});
+	wx.ready(function () {
+	// 在这里调用 API
+		$('.upload_img').click(function(){
+			$('.upload_img').find('span').text('正在处理...');
+			// 选择图片接口
+			wx.chooseImage({
+				count: 1, // 默认9
+				sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+				sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+				success: function (res) {
+					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					$('.upload_img').html('<img class="preview_img" src="'+localIds+'">');
+
+					// 上传图片到微信服务器
+					wx.uploadImage({
+						localId: localIds[0], 					// 需要上传的图片的本地ID，由chooseImage接口获得
+						isShowProgressTips: 1, 				// 默认为1，显示进度提示
+						success: function (res) {
+							var serverId = res.serverId; 	// 返回图片的服务器端ID
+							alert("上传图片到微信服务器成功！");
+							$('.show_upload_num').text('1/1');
+							$('.media_id').html(serverId);
+							$.post("{:U('downloadImg')}" , {media_id : serverId , time:new Date().getTime()} , function(msg){
+								$('.file_name').html(msg.data.file_name);
+								$('.save_path').html(msg.data.save_path);
+								alert('保存图片到本地成功！');
+							})
+						}
+					});
+				}
+			});
+		})
+	});
+		</script>
+	</body>
+	</html>

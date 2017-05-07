@@ -1,0 +1,104 @@
+<include File="Public/header"/>
+<style>
+
+	.order_list{width:16rem;}
+	.order_list ul li{padding-left:0.5rem;padding-right: 0.5rem;height:5.8rem;border-bottom: 1px solid #eee;font-size:0.7rem;}
+	.order_info{line-height: 1.3rem;height:1.3rem;}
+	.order_btn a{width:4rem;line-height: 1.5rem;display: block;border: 1px solid #ddd;text-align: center;border-radius: 0.2rem;float: right;margin:0.1rem;}
+	.order_del_btn{background: red;color:#fff;}
+</style>
+<div class="content">
+
+	<div class="top_search" >
+		<div class="top_bar">
+			我的订单
+		</div>
+	</div>
+
+	<div class="order_list">
+		<ul>
+			<volist name="_list" id="vo">
+				<li>
+					<div class="order_info">订单号：{$vo.order_number}</div>
+					<div class="order_info">快递单号：{$vo.ship_number|default="--"}</div>
+					<div class="order_info">支付价格：￥{$vo.pay_price}&nbsp;&nbsp;状态：{$vo.id|get_order_status}</div>
+					<div class="order_btn">
+						<if condition="$vo['is_pay'] eq 1">
+							<if condition="$vo['is_ship'] eq 1">
+								<if condition="$vo['is_receipt'] eq 1">
+									已收货
+									<else/>
+									<a class="order_ok_btn" order_id="{$vo.id}" href="javascript:;">收货</a>
+								</if>
+							<else/>
+								待发货
+							</if>
+						<else/>
+							<a class="order_del_btn" order_id="{$vo.id}" href="javascript:;">删除</a>
+						</if>
+						<div class="clear_all"></div>
+					</div>
+				</li>
+			</volist>
+		</ul>
+	</div>
+	<script>
+	$(function(){
+		// 删除未支付订单
+		$('.order_del_btn').click(function(){
+			var order_id = $(this).attr('order_id');
+			var _li = $(this).parent().parent();
+			if(order_id)
+			{
+				if(confirm('是否要删除此订单？'))
+				{
+					$.post("{:U('delOrder')}",{order_id:order_id,time:new Date().getTime()},function(msg){
+						if(msg.status == 1)
+						{
+							_li.remove();
+						}
+						else
+						{
+							alert('删除失败，请稍后再试！');
+						}
+
+					});
+				}
+				else
+				{
+					return false;
+				}
+			}
+		})
+
+		// 确认收货
+		$('.order_ok_btn').click(function(){
+			var order_id = $(this).attr('order_id');
+			var _self = $(this);
+			if(order_id)
+			{
+				if(confirm('是否要确认收货？'))
+				{
+					$.post("{:U('confirmOrder')}",{order_id:order_id,time:new Date().getTime()},function(msg){
+						if(msg.status == 1)
+						{
+							_self.parent().text('已收货');
+							_self.remove();
+						}
+						else
+						{
+							alert('确认收货失败，请稍后再试！');
+						}
+					});
+				}
+				else
+				{
+					return false;
+				}
+			}
+		})
+	})
+	</script>
+</div>
+
+<include File="Public/footer"/>

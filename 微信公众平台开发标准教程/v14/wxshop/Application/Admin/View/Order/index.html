@@ -1,0 +1,67 @@
+<extend name="Public/base"/>
+
+<block name="body">
+	<!-- 标题 -->
+	<div class="main-title">
+		<h2>
+		{$meta_title}
+		</h2>
+	</div>
+
+	<!-- 按钮工具栏 -->
+	<div class="cf">
+		<div class="fl">
+			<button class="btn ajax-post" target-form="ids" url="{:U("Order/setStatus",array("status"=>1))}">启 用</button>
+			<button class="btn ajax-post" target-form="ids" url="{:U("Order/setStatus",array("status"=>0))}">禁 用</button>
+			<button class="btn ajax-post confirm" target-form="ids" url="{:U("Order/setStatus",array("status"=>-1))}">删 除</button>
+		</div>
+	</div>
+
+	<!-- 数据表格 -->
+	<div class="data-table">
+		<table class="">
+	<thead>
+		<tr>
+		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+		<th class="">ID</th>
+		<th class="">订单号</th>
+		<th class="">支付价格</th>
+		<th class="">订单状态</th>
+		<th class="">创建时间</th>
+		<th class="">状态</th>
+		<th class="">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<volist name="_list" id="vo">
+		<tr>
+			<td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
+			<td>{$vo.id}</td>
+			<td>{$vo.order_number}</td>
+			<td>￥{$vo.pay_price}</td>
+			<td>{$vo.id|get_order_status}</td>
+			<td><span>{$vo.create_time|time_format}</span></td>
+			<td>{$vo.status|get_status_title}</td>
+			<td><a href="{:U('Order/detail?&id='.$vo['id'])}">编辑</a>
+				<a href="{:U('Order/setStatus?ids='.$vo['id'].'&status='.abs(1-$vo['status']))}" class="ajax-get">{$vo.status|show_status_op}</a>
+				<a href="{:U('Order/setStatus?status=-1&ids='.$vo['id'])}" class="confirm ajax-get">删除</a>
+			</td>
+		</tr>
+		</volist>
+	</tbody>
+	</table>
+	</div>
+	<!-- 分页 -->
+	<div class="page">
+		{$_page}
+	</div>
+</div>
+</block>
+<block name="script">
+<script type="text/javascript">
+$(function(){
+	// 导航高亮
+	highlight_subnav('{:U('Order/index')}');
+})
+</script>
+</block>

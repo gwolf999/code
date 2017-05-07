@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>     
+<head>        
+ <meta charset="UTF-8">        
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">         
+<title>WeUI</title>         
+<link rel="stylesheet" href="../css/weui.min.css"/>
+<style type="text/css">
+    *{margin:0px;padding:0px;}
+    body{padding:0px;}
+    .page_title{line-height:50px;background: #fff;text-align: center;font-size:20px;color:#999;}
+    .color_on{color:red;}
+    .color_finish{color:blue;}
+</style>
+<script type="text/javascript" src="../js/jq.js"></script>
+<script type="text/javascript">
+    $(function(){
+    })
+</script>
+</head>    
+<body>
+    <!DOCTYPE html>
+<html>     
+<head>        
+ <meta charset="UTF-8">        
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">         
+<title>WeUI</title>         
+<link rel="stylesheet" href="../css/weui.min.css"/>
+<style type="text/css">
+    *{margin:0px;padding:0px;}
+    body{padding:0px;}
+</style>
+<script type="text/javascript" src="../js/jq.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#cancelSave').click(function(){
+            $('#dialog1').show();
+        })
+        $('.hideDialog').click(function(){
+            $('#dialog1').hide();
+        })
+        $('#doSave').click(function(){
+            $('#toast').show();
+            setTimeout(function(){
+                window.location.href = "./list.html";
+            },1000);
+        })
+    })
+</script>
+</head>    
+<body>
+    <div class="page_title">
+        待办事项详情
+    </div>
+    <div class="weui_cells">
+        <div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">标题</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" pattern="" placeholder="请输入标题">
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <textarea class="weui_textarea" placeholder="请输入内容" rows="10"></textarea>
+                
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells weui_cells_radio">
+        <label class="weui_cell weui_check_label" for="a">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>已完成</p>
+            </div>
+            <div class="weui_cell_ft">
+                <input type="radio" class="weui_check" name="radio1" id="a">
+                <span class="weui_icon_checked"></span>
+            </div>
+        </label>
+        <label class="weui_cell weui_check_label" for="b">
+
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>进行中</p>
+            </div>
+            <div class="weui_cell_ft">
+                <input type="radio" name="radio1" class="weui_check" id="b" checked="checked">
+                <span class="weui_icon_checked"></span>
+            </div>
+        </label>
+    </div>
+    <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" href="javascript:;" id="doSave">保存记录</a>
+         <a class="weui_btn weui_btn_warn" href="javascript:;" id="cancelSave">取消保存</a>
+    </div>
+    <!--确认dialog-->
+    <div class="weui_dialog_confirm" id="dialog1" style="display:none;">
+    <div class="weui_mask"></div>
+        <div class="weui_dialog">
+            <div class="weui_dialog_hd"><strong class="weui_dialog_title">是否确认取消保存</strong></div>
+            <div class="weui_dialog_bd">取消后当前页面编写的内容无法保存</div>
+            <div class="weui_dialog_ft">
+                <a href="javascript:;" class="weui_btn_dialog default hideDialog">取消</a>
+                <a href="./list.html" class="weui_btn_dialog primary">确定</a>
+            </div>
+        </div>
+    </div>
+    <!-- 保存成功提示toast-->
+    <div id="toast" style="display: none;">
+    <div class="weui_mask_transparent"></div>
+       <div class="weui_toast">
+           <i class="weui_icon_toast"></i>
+           <p class="weui_toast_content">保存成功</p>
+       </div>
+    </div>
+
+</body> 
+</html> 
+</body> 
+</html> 

@@ -1,0 +1,35 @@
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+		<style>
+			*{padding:0px;margin:0px;}
+			html{width:100%;height:100%;}
+			header,footer{width: 100%;line-height: 1.5rem;font-size: 0.8rem;color:#fff;text-align: center;background: #999;}
+			img{display: block;width:14rem;margin: 1.2rem auto;}
+		</style>
+	</head>
+	<body>
+		<header>Header</header>
+		<div class="img_box">
+			<img src="./images/img1.jpg" >
+			<img src="./images/img2.jpg" >
+		</div>
+		<footer>Footer</footer>
+
+		<script>
+			(function (doc, win) {
+			  var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+				  var clientWidth = docEl.clientWidth;
+				  if (!clientWidth) return;
+				  docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+				};
+
+			  if (!doc.addEventListener) return;
+			  win.addEventListener(resizeEvt, recalc, false);
+			  doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+		</script>
+	</body>

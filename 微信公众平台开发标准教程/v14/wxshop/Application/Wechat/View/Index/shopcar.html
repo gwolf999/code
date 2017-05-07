@@ -1,0 +1,290 @@
+<include File="Public/header"/>
+<style>
+	/*seach*/
+	.top_bar{
+		width:16rem;line-height: 2.25rem;height: 2.25rem;
+    text-align: center;
+    background-color: #fff;
+    overflow: hidden;
+    border-bottom: 1px solid #f0f0f0;}
+
+	/*全选按钮 start*/
+	.shoppingcar_list{width:16rem;}
+	.check_all{width:16rem;line-height: 1.5rem;line-height: 1.5rem;border-bottom:1px solid #ddd;}
+	.check_all label{font-size:0.7rem;}
+	.check_all #check_all_box{width:1rem;}
+	/*全选按钮 end*/
+
+	/*购物车列表 start*/
+	.car_list ul li{display: block;width:16rem;float: left;}
+	.car_list ul li .car_check{width:2rem;background: #fff;float: left;height:4.8rem;text-align: center;line-height: 4.8rem;border-bottom: 1px solid #ddd;}
+	.car_list ul li .car_check input{margin-top:2rem;}
+	.car_list ul li .car_content{width:10rem;background: #fff;float: left;height:4.8rem;border-bottom: 1px solid #ddd;}
+	.car_list ul li .car_content .car_content_img{width:4rem;background: #fff;float:left;}
+	.car_list ul li .car_content .car_content_img img{width:4rem;height:4rem;margin-top: 0.5rem;}
+	.car_list ul li .car_content .car_content_info{width:5rem;background: #fff;float: left;margin-top: 0.5rem;}
+	.car_list ul li .car_action{width:4rem;background: #fff;float: left;height:4.8rem;border-bottom: 1px solid #ddd;}
+	.car_list ul li .car_action .goods_price{text-align: center;font-size: 0.8rem;color:red;margin-top:0.4rem;}
+	.goods_del{margin-top: 1.2rem;font-size:0.6rem;color:#ddd;text-align: center;}
+	.all_goods_info{width:16rem;}
+	.goods_all_price{text-align: right;padding-right: 1rem;font-size: 0.6rem;line-height: 1rem;}
+	.goods_all_nums{text-align: right;padding-right: 1rem;font-size: 0.6rem;line-height: 1rem;}
+	/*购物车列表 end*/
+
+	/*显示与提交区域 start*/
+	.name_desc{font-size: 0.7rem;}
+	.goods_nums{width:5rem;background: #fff;height: 3rem;}
+	.goods_nums_del{margin-top: 0.6rem;float: left;width: 1.5rem;height: 1.5rem;text-align: center;line-height: 1.5rem;background: #fff;font-size: 1.2rem;border-top: 1px solid #ddd;border-left:1px solid #ddd;border-bottom: 1px solid #ddd;}
+	.goods_nums_input{margin-top: 0.6rem;float: left;width: 1.5rem;height: 1.5rem;text-align: center;
+		line-height: 1.5rem;border:1px solid #ddd;background: #fff;font-size: 0.8rem;}
+	.goods_nums_add{margin-top: 0.6rem;float: left;width: 1.5rem;height: 1.5rem;text-align: center;line-height: 1.5rem;background: #fff;font-size: 1.2rem;border-top: 1px solid #ddd;border-right:1px solid #ddd;border-bottom: 1px solid #ddd;}
+	.submit_order{width:4.5rem;line-height:1.8rem;height: 1.8rem;text-align: center;display:block;font-size: 0.7rem;
+		border-radius: 0.3rem;
+	background: #c1c1c1;color:#fff;margin-left: 10.6rem;}
+		/*显示与提交区域 end*/
+</style>
+<div class="content">
+
+	<div class="top_search" >
+		<div class="top_bar">
+			购物车
+		</div>
+	</div>
+
+	<div class="shoppingcar_list">
+		<div class="check_all">
+			<input type="checkbox" name="check_all" id="check_all_box" />
+			<label for="check_all_box">全选</label>
+		</div>
+		<div class="car_list">
+
+			<ul>
+				<volist name="list" id="vo">
+				<li>
+					<label class="car_check">
+						<input type="checkbox" all_price="{$vo.all_price}" num="{$vo.num}" name="goods_ids[]" car_id="{$vo.id}" value="{$vo.goods_id}" class="check_car" />
+					</label>
+					<div class="car_content">
+						<div class="car_content_img">
+							<img src="__ROOT__{$vo.goods_info.img_id|get_cover=###,'path'}">
+						</div>
+						<div class="car_content_info">
+							<div class="name_desc">{$vo.goods_info.name}</div>
+							<div class="goods_nums">
+								<div class="goods_nums_del" goods_id="{$vo.goods_id}" goods_price="{$vo.goods_info.price}">-</div>
+								<div class="goods_nums_input">
+									{$vo.num}
+								</div>
+								<div class="goods_nums_add" goods_id="{$vo.goods_id}" goods_price="{$vo.goods_info.price}">+</div>
+								<div style="clear:all"></div>
+							</div>
+							<div style="clear:all"></div>
+						</div>
+						<div style="clear:all"></div>
+					</div>
+					<div class="car_action">
+						<div class="goods_price">
+							￥<span>{$vo.all_price}</span>
+						</div>
+						<div class="goods_del"  goods_id="{$vo.goods_id}">
+							删除
+						</div>
+					</div>
+					<div style="clear:all"></div>
+				</li>
+				</volist>
+			</ul>
+		</div>
+		<div class="all_goods_info">
+			<div class="goods_all_price">商品总额:￥<span>0</span></div>
+			<div class="goods_all_nums">商品总数:<span>0</span></div>
+			<a href="javascript:;" class="submit_order">结算</a>
+		</div>
+	</div>
+
+	<script>
+		$(function(){
+			// 结算
+			$('.submit_order').click(function(){
+				var car_ids = "";
+				$("input[name='goods_ids[]']").each(function(){
+					if(this.checked)
+					{
+						car_ids += $(this).attr('car_id') + ",";
+					}
+				})
+				if(car_ids)
+				{
+					window.location.href = "{:U('Order/index')}?ids="+car_ids;
+				}
+				else
+				{
+					alert('请选择要结算的商品！');
+					return false;
+				}
+			})
+
+			//单个删除
+			$('.goods_del').click(function(){
+
+				if(confirm('确定删除此条商品信息？'))
+				{
+					var _li = $(this).parent().parent();
+					var goods_num = Number(_li.find('.goods_nums_input').text());
+					var goods_price = Number(_li.find('.goods_price span').text());
+					var goods_id = Number($(this).attr('goods_id'));
+					var old_total_price = Number($('.goods_all_price').find('span').text());
+					var old_total_num = Number($('.goods_all_nums').find('span').text());
+					if(old_total_price && old_total_num)
+					{
+						$('.goods_all_price').find('span').text(old_total_price - goods_price);
+						$('.goods_all_nums').find('span').text(old_total_num - goods_num);
+					}
+
+					var uid = "{$user_info.uid|default=1}";
+					$.post("{:U('delCarGoodsInfo')}", {
+						time : new Date().getTime(),
+						uid : uid,
+						goods_id : goods_id
+					},function(msg){
+
+					});
+					_li.remove();
+				}
+				else
+				{
+					return true;
+				}
+			})
+			// 全选
+			$('#check_all_box').click(function(){
+				$("input[name='goods_ids[]']").prop('checked' , this.checked);
+				if(this.checked)
+				{
+					var total_price = 0;
+					var total_num = 0;
+					$("input[name='goods_ids[]']").each(function(){
+						if($(this).prop('checked'))
+						{
+							total_price += Number($(this).attr('all_price'));
+							total_num += Number($(this).attr('num'));
+						}
+					})
+					$('.goods_all_price').find('span').text(total_price);
+					$('.goods_all_nums').find('span').text(total_num);
+				}
+				else
+				{
+					$('.goods_all_price').find('span').text('0');
+					$('.goods_all_nums').find('span').text(0);
+				}
+			})
+
+			// 单选
+			$("input[name='goods_ids[]']").click(function(){
+				var old_total_price = Number($('.goods_all_price').find('span').text());
+				var old_total_num = Number($('.goods_all_nums').find('span').text());
+				if(!this.checked)
+				{
+					old_total_price -= Number($(this).attr('all_price'));
+					old_total_num -= Number($(this).attr('num'));
+				}
+				else
+				{
+					old_total_price += Number($(this).attr('all_price'));
+					old_total_num += Number($(this).attr('num'));
+				}
+				$('.goods_all_price').find('span').text(old_total_price);
+				$('.goods_all_nums').find('span').text(old_total_num);
+
+			})
+
+			// 增加数量
+			$('.goods_nums_add').click(function(){
+				var goods_price  = Number($(this).attr('goods_price'));
+
+				var _li = $(this).parent().parent().parent().parent();
+				var all_price = _li.find('.goods_price span').text();
+				var new_all_price = Number(all_price) +　goods_price;
+				_li.find('.goods_price span').text(new_all_price);
+
+				var goods_num = Number(_li.find('.goods_nums_input').text());
+				var goods_id = Number($(this).attr('goods_id'));
+				var old_total_price = Number($('.goods_all_price').find('span').text());
+				var old_total_num = Number($('.goods_all_nums').find('span').text());
+
+				old_total_price += goods_price;
+				old_total_num += 1;
+
+				var new_num = goods_num + 1;
+				_li.find('.goods_nums_input').text(new_num);
+
+				_li.find('input[name="goods_ids[]"]').attr('all_price' , new_all_price );
+				_li.find('input[name="goods_ids[]"]').attr('num' , new_num );
+
+				if(_li.find('input[name="goods_ids[]"]').prop('checked'))
+				{
+					$('.goods_all_price').find('span').text(old_total_price);
+					$('.goods_all_nums').find('span').text(old_total_num);
+				}
+				var uid = "{$user_info.uid|default=1}";
+				$.post("{:U('updateShoppcar')}" ,
+				{
+					time:new Date().getTime() ,
+					num:new_num,
+					goods_id:goods_id,
+					uid:uid},
+					function(msg){}
+				)
+			})
+
+			// 删除数量
+			$('.goods_nums_del').click(function(){
+				var _li = $(this).parent().parent().parent().parent();
+				var goods_num = Number(_li.find('.goods_nums_input').text());
+				if(goods_num <= 1)
+				{
+					return true;
+				}
+
+				var goods_price  = Number($(this).attr('goods_price'));
+				var all_price = _li.find('.goods_price span').text();
+				var new_all_price = Number(all_price) -　goods_price;
+				_li.find('.goods_price span').text(new_all_price);
+
+
+				var goods_id = Number($(this).attr('goods_id'));
+				var old_total_price = Number($('.goods_all_price').find('span').text());
+				var old_total_num = Number($('.goods_all_nums').find('span').text());
+
+				old_total_price -= goods_price;
+				old_total_num -= 1;
+
+				var new_num = goods_num - 1;
+				_li.find('.goods_nums_input').text(new_num);
+
+				_li.find('input[name="goods_ids[]"]').attr('all_price' , new_all_price );
+				_li.find('input[name="goods_ids[]"]').attr('num' , new_num );
+
+				if(_li.find('input[name="goods_ids[]"]').prop('checked'))
+				{
+					$('.goods_all_price').find('span').text(old_total_price);
+					$('.goods_all_nums').find('span').text(old_total_num);
+				}
+
+				var uid = "{$user_info.uid|default=1}";
+				$.post("{:U('updateShoppcar')}" ,
+				{
+					time:new Date().getTime() ,
+					num:new_num,
+					goods_id:goods_id,
+					uid:uid
+				},
+					function(msg){}
+				)
+			})
+		})
+	</script>
+</div>
+
+<include File="Public/footer"/>

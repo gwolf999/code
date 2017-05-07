@@ -1,0 +1,66 @@
+<include File="Public/header"/>
+<style>
+	.goods_buy_bar{width:16rem;position: fixed;z-index: 999;bottom: 0;left: 0;width: 100%;height: 2rem;padding: 0 0.75rem;border-top: 1px solid #ccc;background: #fff;}
+	/* 底部购买和加入购物车按钮*/
+	.order_btn{display: block;border:1px solid red;line-height: 1.7rem;height:1.7rem;text-align: center;font-size: 0.7rem;border-radius: 0.2rem;margin-top: 0.05rem;float: left;background: #fff;width:10rem;}
+
+	.goods_info{padding:0.5rem;font-size: 0.8rem;}
+	.info_fl{line-height: 1.5rem;}
+	.wxpay{display: block;width:15rem;line-height: 2rem;text-align: center;border: 1px solid #999;margin: 0 auto;border-radius: 0.2rem;}
+
+</style>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	//调用微信JS api 支付
+	function jsApiCall()
+	{
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest',				// 获取微信支付返回请求
+			{$jsApiParameters},					//传入PHP生成的支付参数
+			function(res){
+				alert('支付成功！');
+				window.location.href = "{:U('Order/order_list')}";
+			}
+		);
+	}
+	// 发起微信支付
+	function callpay()
+	{
+		if (typeof WeixinJSBridge == "undefined"){
+			if( document.addEventListener ){
+				document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+			}else if (document.attachEvent){
+				document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+				document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+			}
+		}else{
+			jsApiCall();
+		}
+	}
+</script>
+<div class="content">
+
+	<div class="top_search" >
+		<div class="top_bar">
+			订单支付
+		</div>
+	</div>
+	<div class="goods_info">
+		<div class="info_fl">支付价格：<span>￥{$goods_info.pay_price}元</span></div>
+		<div class="info_fl">商品数量：<span>{$goods_info.pay_num}</span></div>
+		<div class="info_fl">收货人：<span>{$info.name}</span></div>
+		<div class="info_fl">手机号：<span>{$info.mobile}</span></div>
+		<div class="info_fl">收货地址：<span>{$info.address}</span></div>
+	</div>
+	<a href="javascript:;" class="wxpay" style="">微信支付</a>
+	<script>
+	$(function(){
+		// 给按钮绑定点击事件
+		$('.wxpay').click(function(){
+			callpay();					// 发起支付
+		})
+	})
+	</script>
+</div>
+
+<include File="Public/footer"/>
