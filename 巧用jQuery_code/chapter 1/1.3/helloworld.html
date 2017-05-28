@@ -1,0 +1,20 @@
+<html>
+  <head>
+<!--引入了jQuery的外部js文件即下载的jquery1.2.6.js -->
+    <script type="text/javascript" src="jquery1.2.6.js"></script>
+    <script type="text/javascript">
+	//包含了采用jQuery编写的代码。
+//$(document).ready()之前已经介绍过，所有的jQuery代码都会被放置在ready()定义的方法中。
+//这些代码将会在页面的DOM载入时被执行。
+	$(document).ready(function(){
+	   //$("a")取出了页面中所有<a>元素。click()方法为<a>添加了点击时的事件处理。当<a>被点击时，调用alert("Thanks for visiting!")，弹出一个警告框。
+        $("a").click(function(event){
+		alert("Thanks for visiting!");
+		});
+ });
+    </script>
+  </head>
+  <body>
+    <a href="http://jquery.com/">jQuery</a>
+  </body>
+  </html>

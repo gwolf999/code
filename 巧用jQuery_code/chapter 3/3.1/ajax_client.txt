@@ -1,0 +1,35 @@
+<html> 
+<head> 
+ <title>Ajax with jQuery Example</title> 
+<!—引入jQuery -->
+ <script type="text/JavaScript" src="jquery.js"></script> 
+ <script type="text/JavaScript"> 
+ $(document).ready(function(){ 
+//为id等于generate的按钮添加了一个click事件的响应函数
+   $("#generate").click(function(){ 
+     //load()方法获取服务器数据
+     $("#quote p").load("script.php"); 
+   }); 
+ }); 
+ </script> 
+<!—定义wrapper div的样式 -->
+<style type="text/css"> 
+   #wrapper { 
+     width: 240px; 
+     height: 80px; 
+     margin: auto; 
+     padding: 10px; 
+     margin-top: 10px; 
+     border: 1px solid black; 
+     text-align: center; 
+   } 
+ </style> 
+</head> 
+<body> 
+<!—页面元素内容 -->
+ <div id="wrapper"> 
+   <div id="quote"><p> </p></div> 
+   <input type="submit" id="generate" value="Generate!"> 
+ </div> 
+</body> 
+</html>

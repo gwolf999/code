@@ -1,0 +1,17 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+// 起作用的代码
+jQuery(document).ready(function(){
+   $().mousemove(function(e){   //定义了mousemove事件发生时的处理函数
+      $('#status').html(e.pageX +', '+ e.pageY);  //事件处理函数的参数是一个event对象，从这个对象中可以获取当前鼠标的位置（e.pageX和e.pageY），然后将它们显示在status页面元素中
+   }); 
+})
+</script>
+<body>
+<h2 id="status">
+0, 0
+</h2>
+</body>
+</html>
