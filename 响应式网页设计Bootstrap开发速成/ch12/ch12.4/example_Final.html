@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Bootstrap-Popovers弹出提示信息</title>
+	<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="../../bootstrap/js/jquery-3.1.0.min.js"></script>
+	<script src="../../bootstrap/js/bootstrap.min.js"></script>
+	
+<script>
+	$(function () 
+      { $("[data-toggle='popover']").popover();
+      });
+   </script>
+</script>
+   
+</head>
+
+<body>
+
+<script>
+	$(function () { $("[data-toggle='popover']").popover();});
+</script>
+
+<div style="padding:100px 200px 10px;">
+   <button type="button" class="btn btn-default" title="标题" data-toggle="popover" data-placement="left" data-content="左侧的内容">左侧
+   </button>
+   <button type="button" class="btn btn-primary" title="标题" data-toggle="popover" data-placement="top" data-content="顶部的内容">顶部
+   </button>
+   <button type="button" class="btn btn-success" title="标题" data-toggle="popover" data-placement="bottom" data-content="底部的内容">底部
+   </button>
+   <button type="button" class="btn btn-warning" title="标题" data-toggle="popover" data-placement="right" data-content="右侧的内容">右侧
+   </button>
+</div>
+
+
+
+</body>
+</html>

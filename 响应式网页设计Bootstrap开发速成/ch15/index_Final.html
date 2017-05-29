@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>123LearnGo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/style_Final.css" rel="stylesheet">
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+
+<body>
+<!--第一层——菜单开始-->
+<div class="menuTop">
+  <nav class="navbar navbar-default navbar-fixed-top menu" role="navigation">
+    <div class="container">
+      <!-- 移动显示 -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed navbarMin" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="images/logo.jpg"></a>
+        </div>
+      <!--按钮内容 -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right menubtn">
+            <li><a href="#">关于我们</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">视频教学 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Android 应用开发</a></li>
+                <li><a href="#">GWD & 网页设计丙级 解题</a></li>
+                <li><a href="#">GameSalad 2D 游戏制作</a></li>
+                <li><a href="#">Unity 5</a></li>
+              </ul>
+            <li><a href="#">技术分享</a></li>
+              <li><a href="#">专业讲师</a></li>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+ </div> 
+<!--第一层——菜单结束-->
+
+<!--第二层——广告轮播开始-->
+<div class="banner">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- 指针 -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      </ol>
+    
+      <!-- 幻灯片 -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="images/slide1.jpg" class="img-responsive">
+          <div class="carousel-caption">
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/slide2.jpg" class="img-responsive">
+          <div class="carousel-caption">
+          </div>
+        </div>
+      </div>
+      <!-- 左右开关 -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+</div>
+<!--第二层——广告轮播结束-->
+
+<!--第三层——最新消息与广告开始-->
+<div class="container news">
+	<div class="row">
+    <div class="col-md-8 col-sm-8">
+    	<img src="images/newTile.jpg" class="coursesTitle">
+      <div class="panel-group" id="accordion1">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">网页设计丙级 解题 开课了</a></h4>
+          </div>
+          <div id="collapseOne1" class="panel-collapse collapse in">
+            <div class="panel-body">学习如何使用Google Web Design 软件进行【网页设计丙级】的技术解题</div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1">Google Web Design 开课了</a></h4>
+          </div>
+          <div id="collapseTwo1" class="panel-collapse collapse">
+            <div class="panel-body">网页设计新神器Google Web Designer就是要让创意者、设计者或初学者不必编写任何程序代码，就可以运用HTML5技术，缩短制作时程，打造跨平台互动广告、动画与网页！</div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1">123LearnGo 官方网站正式启动</a></h4>
+          </div>
+          <div id="collapseThree1" class="panel-collapse collapse">
+            <div class="panel-body">以分享知识为主轴，提供相关的专业技能供有兴趣的人一起学习与讨论</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+    	<img src="images/ad.jpg" class="img-responsive">
+    </div>
+  </div>
+  <hr><!--水平线分隔线-->
+</div>
+<!--第三层——最新消息与广告结束-->
+
+<!--第四层——课程分享开始-->
+<div class="container">
+    <img src="images/CourseShareTitle.jpg" class="coursesTitle">
+    <div class="row courseRow">
+        <div class="col-sm-3 col-xs-12">
+        	<img src="images/CourseImg1.jpg" class="courseImg img-responsive">
+        </div>
+        <div class="CoursesShare col-sm-3  col-xs-12">
+        	<div class="span">GWD & 网页设计丙级 解题</div>
+            <p>学习如何使用Google Web Design 软件进行【网页设计丙级】的技术解题</p>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+        	<img src="images/CourseImg2.jpg" class="courseImg img-responsive">
+        </div>
+        <div class="CoursesShare col-sm-3  col-xs-12">
+        	<div class="span">GameSalad 2D 游戏制作</div>
+            <p>一款简易、直觉式的游戏开发软件，让非程序设计者也能开发Web、智能手机与平板电脑的跨平台游戏App</p>
+        </div>
+    </div>
+    <div class="row courseRow">
+        <div class="col-sm-3  col-xs-12">
+       	  <img src="images/CourseImg3.jpg" class="courseImg img-responsive">
+        </div>
+        <div class="CoursesShare col-sm-3  col-xs-12">
+        	<div class="span">Android 应用开发</div>
+            <p>最新的技术结合，无论使用HTML5或Unity都能打造出一款结合虚拟现实的App应用。</p>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+       	  <img src="images/CourseImg4.jpg" class="courseImg img-responsive">
+        </div>
+        <div class="CoursesShare col-sm-3  col-xs-12">
+        	<div class="span">Unity 5</div>
+            <p>最新的Unity公开课程，让你一步一步做出自己心中理想的游戏。</p>
+        </div>
+    </div>
+</div>
+
+<!--第四层——课程分享结束-->
+
+<!--第五层——链接内容开始-->
+<div class="contLink">
+	<a href="https://www.facebook.com/123LearnGo-Community-514983261988834/"><img src="images/fb.jpg" class="contLinkimg"></a>
+    <a href="https://www.youtube.com/channel/UCJijGu9wwsN9TFckdonRAHw"><img src="images/youtube.jpg" class="contLinkimg"></a>
+    <a href="mailto:123learngo@gmao;.com"><img src="images/mail.jpg" class="contLinkimg"></a>
+</div>
+<!--第五层——链接内容结束-->
+
+<!--第六层——页脚分享开始-->
+<div class="footer">© 2016 123learngo</div>
+<!--第六层——页脚分享结束-->
+
+<!--回顶部动画开始-->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+<script type="text/javascript">
+		$(document).ready(function() {
+		$().UItoTop({ easingType: 'easeOutQuart' });
+});
+</script>
+<a href="#to-top" id="toTop" style="display: block;">
+	<span id="toTopHover" style="opacity: 1;"></span>
+</a>
+<!--回顶部动画结束-->
+
+</body>
+</html>

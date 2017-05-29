@@ -1,0 +1,102 @@
+
+body{
+		background-image:url("../images/background.jpg");
+	}
+  
+/*開課內容*/
+ .conDiv{
+	background-color:#fff;
+}
+  
+/*Banner設定*/
+.imgBanner {
+	left:0;
+	top:0;
+	border-style: none;
+	padding: 0;
+	width:100%;
+}
+.imgBanner img{
+	width:100%;
+}
+
+/*Step1圖片設定*/
+ .imgStep1 {
+	border-style: none;
+	padding: 0;
+	background-color: #448aca;
+	float:left;
+	vertical-align : middle;
+}
+
+/*Step2圖片設定*/
+.imgStep2 {
+	border-style: none;
+	padding: 0;
+	background-color: #ea68a2;
+	float:left;
+	vertical-align : middle;
+}
+
+/*Step3圖片設定*/
+.imgStep3 {
+	border-style: none;
+	padding: 0;
+	background-color: #8957a1;
+	float:left;
+	vertical-align : middle;
+}
+
+/*Step4圖片設定*/
+.imgStep4 {
+	border-style: none;
+	padding: 0;
+	background-color: #f19149;
+	float:left;
+	vertical-align : middle;
+}
+
+/*開課文字說明*/
+.text {
+	padding:2%;
+	background-color: #fff;
+}
+
+/*開課文字說明中的 p 標籤樣式設定*/
+.text p {
+	font-Size:1.6em;
+	font-family:"微軟正黑體";
+	color:#FF0000;
+	font-weight:900;
+	text-align:center;
+}
+
+/*葉弟弟貼圖位置*/
+.imgLine{
+	left:5%;
+	}
+
+/*葉弟弟貼圖文字*/
+.imgLineText{
+	margin-top:5%;
+	}
+
+/*input群組表單設定*/	
+.formBorder {
+	margin-top:5%;
+	padding:5%;
+	border-radius:15px;
+	background-color:#d2d2d2;
+}
+
+/*頁腳設定*/
+.imgFooter {
+	left:0;
+	top:0;
+	border-style: none;
+	padding: 0;
+	background-color: #FFFFFF;
+}
+.imgFooter img{
+	width:100%;
+}
