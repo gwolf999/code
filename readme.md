@@ -12,7 +12,7 @@
  5. [深入理解Bootstrap](https://github.com/gwolf999/code/tree/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Bootstrap)
  6. [微信公众平台与小程序开发--从零搭建整套系统](https://github.com/gwolf999/code/tree/master/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91--%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%B4%E5%A5%97%E7%B3%BB%E7%BB%9F)
  7. [图解CSS3核心技术与案例实战](https://github.com/gwolf999/code/tree/master/%E5%9B%BE%E8%A7%A3CSS3%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%AE%9E%E6%88%98code)
-
+ 8. [Javascirpt高级程序设计V3](https://github.com/gwolf999/code/tree/master/%E5%9B%BE%E8%A7%A3CSS3%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%AE%9E%E6%88%98code)
 
 ----------
 git@github.com:gwolf999/code.git
