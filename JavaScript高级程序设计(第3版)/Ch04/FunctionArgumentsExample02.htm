@@ -3,13 +3,17 @@
 <head>
     <title>Function Arguments Example 2</title>
     <script type="text/javascript">
+    /*与传值不同在于不需要return 语句*/
         function setName(obj) {
             obj.name = "Nicholas";
+            obj.age=22;
+
         }
         
         var person = new Object();
         setName(person);
         alert(person.name);    //"Nicholas"
+        alert(person.age);
 
     </script>
 </head>
